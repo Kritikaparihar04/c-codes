@@ -1,0 +1,28 @@
+bool checkPalindrome(char str[]) {
+    
+  int  len=strlen(str);
+ 
+    for(int i =0;i<=len/2;i++)
+    {
+        if(str[i]!=str[len-i-1])
+           {
+               return false;
+           }
+    }
+        
+    return true;
+    
+}
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+#include "solution.h"
+
+int main() {
+    int size = 1e6;
+    char str[size];
+    cin >> str;
+    cout << (checkPalindrome(str) ? "true" : "false");
+}
