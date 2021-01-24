@@ -1,0 +1,36 @@
+#include<iostream>
+using namespace std;
+void helper(char input[],char output[],int &count, int start)
+{
+//base condition
+if(input[start]=='\0')
+{
+    return ;
+}
+//small calculation
+
+if(input[start]!='x')
+{
+   output[count]=input[start];
+   count++;
+}
+//recursion
+
+helper(input,output,count,start+1);
+
+
+}
+void replacex(char input[])
+{
+    int count=0;
+    char output[10];
+helper(input,output,count,0);
+
+cout<<output;
+} 
+
+int main()
+{
+char input[]="axtxrxi";
+replacex(input);
+}
