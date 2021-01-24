@@ -1,0 +1,39 @@
+#include<iostream>
+using namespace std;
+#include<string.h>
+
+void helper(char input[],int start)    
+{
+    if(input[start]=='\0')       //base case
+    {
+        return;
+    }
+ 
+                                              //recursion call
+ helper(input,start+1);                       //point krega string k next next element 
+ //smallcalculation
+ if(input[start]=='p'&& input[start+1]=='i')      //check p and whether the next element is i
+ {
+     //array ko aage move karao 2 position se 
+     for(int i=strlen(input);i>=start+2;i--)
+     {
+         input[i+2]=input[i];
+     }                                 //replacing the pi with the 3.14
+    input[start]  ='3';
+    input[start+1]='.';
+    input[start+2]='1';
+    input[start+3]='4';
+ }
+}
+
+void replacepi(char input[])
+{
+   helper(input,0);    //calling the helper function
+
+}
+int main()
+{
+    char input[]="pixiptppi";    //given input
+    replacepi(input);
+    cout<<input;               
+}
