@@ -1,0 +1,36 @@
+#include<iostream>
+using namespace std;
+  void replace(char input[])
+ {
+ 
+    //base
+    if(input[0]=='\0')
+    return ;
+
+    //small calculation
+
+    if(input[0]!='x')
+    {
+        replace(input+1);
+    }
+   else
+   {
+       
+           int i=1;
+           for(;input[i]!='\0';i++)
+           {
+               input[i-1]=input[i];
+           }
+           input[i-1]='\0';
+           return replace(input);
+       }
+   }
+   
+
+ 
+int main()
+{
+    char input[]="tixf";
+    replace(input);
+    cout<<input;
+}
