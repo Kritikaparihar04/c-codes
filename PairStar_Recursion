@@ -1,0 +1,43 @@
+// Change in the given string itself. So no need to return or print the changed string.
+#include<string.h>
+void helper(char input[],int start)
+{
+     //base case
+    if(strlen(input)==0)
+    {
+        return;
+    }
+    //recursion call
+    helper(input+1,start);
+    
+    //small calculation
+        if(input[start]==input[start+1])
+             
+        {
+          for(int i=strlen(input);i>=start+1;i--)
+            {
+               input[i+1]=input[i];
+            }
+            input[start+1]='*';
+        }
+
+}
+
+void pairStar(char input[]) {
+    // Write your code here
+   helper(input,0);
+    
+ 
+}
+
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+   char input[100];
+   cin.getline(input, 100);
+   pairStar(input);
+   cout << input << endl;
+}
