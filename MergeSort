@@ -1,0 +1,89 @@
+void merging(int input[],int l,int m,int r)
+{
+    int i,j,k;
+    int n1=m-l+1;
+    int n2=r-m;
+    int L[n1],R[n2];
+    for(i=0;i<n1;i++)
+        L[i]=input[l+i];
+    for(j=0;j<n2;j++)
+        R[j]=input[m+1+j];
+    i=0;
+    j=0;
+    k=l;
+    while(i<n1&&j<n2)
+    {
+        if(L[i]<=R[j])
+        {
+            input[k]=L[i];
+            i++;
+            k++;
+        }
+        else
+        {
+            input[k]=R[j];
+            j++;
+            k++;
+        }
+    }
+    while(i<n1)
+    {
+        input[k]=L[i];
+        i++;
+        k++;
+    }
+    while(j<n2)
+    {
+        input[k]=R[j];
+        j++;
+        k++;
+    }
+    
+}
+void merge(int input[],int s, int e)
+{
+    
+    
+     
+    
+    if(s<e)
+    {
+     int mid=(s+e)/2;
+    merge(input,s,mid);
+    merge(input,mid+1,e);
+    merging(input,s,mid,e);
+    
+    }
+    else
+    {
+        return;
+    }
+     
+    
+}
+
+
+
+void mergeSort(int input[], int size){
+	// Write your code here
+    
+    int s=0,e=size-1;
+     merge(input,s,e);
+          
+}
+
+
+#include <iostream>
+using namespace std;
+
+int main() {
+  int length;
+  cin >> length;
+  int* input = new int[length];
+  for(int i=0; i < length; i++)
+    cin >> input[i];
+  mergeSort(input, length);
+  for(int i = 0; i < length; i++) {
+    cout << input[i] << " ";
+  }
+}
