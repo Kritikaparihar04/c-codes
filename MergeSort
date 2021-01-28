@@ -1,89 +1,107 @@
-void merging(int input[],int l,int m,int r)
+
+
+ #include<iostream>
+ using namespace std;
+ 
+ void merge(int input[], int s, int mid, int e)
+ {
+ //2 array size
+ int s1=mid-s+1;
+ int s2=e-mid;
+
+ //2 array initilise kaarre h
+
+ int arr1[s1],arr2[s1];
+
+ //first half arrray k element ko array 1 m dalo
+ for(int i=0;i<s1;i++)
+ {
+    arr1[i]=input[i+s];
+ }
+
+ //second half array k element ko arr2 m daalo
+
+ for(int j=0;j<s2;j++)
+ {
+   arr2[j]=input[mid+1+j];
+ }
+
+ int i=0,j=0;
+ int k=s;    
+
+//compare and put in orignal array
+
+while(i<s1 &&  j<s2)
 {
-    int i,j,k;
-    int n1=m-l+1;
-    int n2=r-m;
-    int L[n1],R[n2];
-    for(i=0;i<n1;i++)
-        L[i]=input[l+i];
-    for(j=0;j<n2;j++)
-        R[j]=input[m+1+j];
-    i=0;
-    j=0;
-    k=l;
-    while(i<n1&&j<n2)
-    {
-        if(L[i]<=R[j])
-        {
-            input[k]=L[i];
-            i++;
-            k++;
-        }
-        else
-        {
-            input[k]=R[j];
-            j++;
-            k++;
-        }
-    }
-    while(i<n1)
-    {
-        input[k]=L[i];
-        i++;
-        k++;
-    }
-    while(j<n2)
-    {
-        input[k]=R[j];
-        j++;
-        k++;
-    }
-    
-}
-void merge(int input[],int s, int e)
-{
-    
-    
-     
-    
-    if(s<e)
-    {
-     int mid=(s+e)/2;
-    merge(input,s,mid);
-    merge(input,mid+1,e);
-    merging(input,s,mid,e);
-    
-    }
-    else
-    {
-        return;
-    }
-     
-    
-}
-
-
-
-void mergeSort(int input[], int size){
-	// Write your code here
-    
-    int s=0,e=size-1;
-     merge(input,s,e);
-          
-}
-
-
-#include <iostream>
-using namespace std;
-
-int main() {
-  int length;
-  cin >> length;
-  int* input = new int[length];
-  for(int i=0; i < length; i++)
-    cin >> input[i];
-  mergeSort(input, length);
-  for(int i = 0; i < length; i++) {
-    cout << input[i] << " ";
+  if(arr1[i]<=arr2[j])
+  {
+    input[k]=arr1[i];
+    i++;
+    k++;
   }
+  else
+  {
+     input[k]=arr2[j];
+     k++;
+     j++;
+  }
+  
 }
+
+//ab ye dekho if arr1 ka kuch elements abhi bhi bache ho and arr2 k khtm ho gye ho
+while(i<s1)
+{
+  input[k]=arr1[i];
+  i++;
+  k++;
+}
+
+//if arr2 k kuch elements abhi bhi bache ho and arr1 k khtm hoo gye ho
+
+while(j<s2)
+{
+  input[k]=arr2[j];
+  k++;
+  j++;
+}
+
+ }
+ void mergeSort(int input[],int s, int e)
+ {
+
+   if(s<e)
+   {
+     int mid=(s+e)/2;
+     mergeSort(input,s,mid); //firsthalf
+     mergeSort(input,mid+1,e);
+     //i have to merge the list
+     merge(input,s,mid,e);
+
+   }
+   else
+   
+     return;
+
+   
+  
+ }
+
+ void callMergeSort(int input[],int size)
+ {
+   int s=0, e=size-1;
+   mergeSort(input,s,e);
+
+ }
+ 
+ int main()
+ { 
+   int input[]={1,2,5,9,6,7};
+     int size=sizeof(input)/sizeof(int);
+    callMergeSort(input,size);
+ for(int i=0;i<size;i++)
+   {
+   cout<<input[i]<<" ";
+   }
+ }
+ 
+ 
