@@ -1,0 +1,26 @@
+
+//With Time complexity O(n square) 
+
+#include<iostream>
+using namespace std;
+int unique(int arr[],int size)
+{
+    
+for (int i = 0; i < size; i++)
+{   int count=0;
+     for(int j=0;j<size;j++)
+     {
+         if(arr[i]==arr[j])
+          count++;
+     }
+      if(count%2!=0)
+       return arr[i];
+}
+       return 0; 
+}
+int main()
+{
+    int arr[]={1,4,4,2,5,1,2};
+    int size=sizeof(arr)/sizeof(int);
+    cout<<unique(arr,size);
+}  
