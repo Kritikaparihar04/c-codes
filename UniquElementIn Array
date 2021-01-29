@@ -24,3 +24,30 @@ int main()
     int size=sizeof(arr)/sizeof(int);
     cout<<unique(arr,size);
 }  
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+// With time complexity of O(n)
+or a better approach to this problem
+
+#include<iostream>
+using namespace std;
+
+#include<math.h>
+int unique(int arr[],int size)
+{   int c=0;
+    for(int i=0;i<size;i++)              
+    {
+         c^=arr[i];      //property of xor , same element will give 0 and at last unique element is left
+        
+    }
+     return c;
+}
+int main()
+{
+    int arr[]={6,100,1,4,1,4,2,2,9,8,9,8,100};
+    int size=sizeof(arr)/sizeof(int);
+     
+   cout<<unique(arr,size);
+   
+
+ }  
