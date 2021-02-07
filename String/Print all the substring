@@ -1,0 +1,39 @@
+#include<iostream>
+using namespace std;
+#include<math.h>
+int subs(string input, string output[])
+{
+    //base condition 
+    if(input.empty())
+    {
+        output[0]=" ";
+        return 1;
+    }
+
+    //smalloutput ka size
+
+    string smallString=input.substr(1);
+    int smallOutputSize=subs(smallString,output); //recursion , string ko todte raho till empty  
+    
+  // append krte raho first element of the calling string to the called substring
+  for(int i=0;i<smallOutputSize;i++)
+{
+    output[i+smallOutputSize]=input[0]+output[i];      //copied element k aage lagata raho
+}
+return 2*smallOutputSize;
+}
+int  main()
+{
+    string input; //creating a string
+    cin>>input; //user enters the string
+    int s=input.size(); //it will find the size of the input
+    int n=pow(2,s);  // output will contain the substring, so each element has the chance of printing or not printing(2 raise to power n)
+    string *output=new string[n];  //dynamically creating the output string
+    int count=subs(input,output);
+    //count will contain the number of elements in the output at each call
+
+    for(int i=0;i<count;i++)
+    {
+        cout<<output[i]<<endl;
+    }
+}
