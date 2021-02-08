@@ -1,0 +1,70 @@
+#include<iostream>
+using namespace std;
+class student
+{
+    
+    int age;
+    public:
+     int roll;
+ //constructor 
+     student()
+   {
+       cout<<" default........ constructor 1 called"<<endl;
+   }
+
+   //parameterized constructor
+   student(int age)
+   {
+    cout<<"parameterized ............constructor 2 is called"<<endl;
+    this-> age=age;     //this block k age m parameter ka age put kro
+   }
+
+   student(int a, int r)
+   {
+       cout<<"2 parameters"<<endl;
+       age=a;
+       roll=r;
+   }
+
+     //will create two functions getter and setter
+     void setA( int a, int password) //we can also add constraint in it
+     {
+        if(password != 123)
+        {
+            return;
+        }
+
+        if(a<0)
+        {
+            return;
+        }
+
+        age=a;
+     }
+     void getA()
+     {
+         cout<<age;
+     }
+
+     void display()
+     {
+         cout<<"age is "<<age<<" roll no is  "<<roll<<endl;
+     }
+} ;
+
+int main()
+{
+    student s1;
+   s1.display();
+
+   student s2(30);
+   s2.display(); // using this keyword
+    student s4(10); //parameterized constructor
+   s4.display();
+   //two parameters
+   student *s5=new student(11,12);
+   s5->display();
+   
+   student s6(1000);
+   s6.display();
+}
