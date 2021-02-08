@@ -1,0 +1,30 @@
+#include<iostream>
+using namespace std;
+
+class basic{
+    public:     //access modifier
+      int age;
+      int rollNum;
+
+};
+
+int main()
+{
+    //created statically
+    basic b1;   //object created
+    b1.age=5;
+    b1.rollNum=1;
+   
+   //dynamically  creating 
+   basic *b2=new basic;
+   (*b2).age=6;
+
+   //can also use this
+   b2->rollNum=2;
+
+   //can print like this
+   cout<<"b1 roll: "<<b1.rollNum;
+   cout<<"b2 age: "<<b2->age;
+
+
+}
