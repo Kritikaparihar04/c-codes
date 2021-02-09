@@ -1,0 +1,45 @@
+#include<iostream>
+using namespace std;
+class cop{
+public:
+int age;
+int roll;
+cop(int a)
+{
+    age=a;
+ 
+}
+
+cop(int a,int r)
+{
+    age=a;
+    roll=r;
+}
+void displ()
+{
+    cout<<"age is "<<age;
+    cout<<"rol is "<<roll;
+    
+}
+ ~cop( ){
+     cout<<"destructor called"<<endl;
+ }
+
+};
+int main()
+{ cout<<"c1 :"<<endl;
+  cop c(10);
+ 
+cout<<"c2 :"<<endl;
+  cop C(20,30);
+ 
+ 
+ C=c;
+ 
+  cout<<"c4 : by using delete keyword we are able to call destructor , because when dynamically created , heap memory is used!"<<endl;
+cop *d=new cop(11);
+c=*d;
+delete d;
+
+
+}
