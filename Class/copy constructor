@@ -1,0 +1,38 @@
+#include<iostream>
+using namespace std;
+class cop{
+public:
+int age;
+int roll;
+cop(int a)
+{
+    age=a;
+ 
+}
+
+cop(int a,int r)
+{
+    age=a;
+    roll=r;
+}
+void displ()
+{
+    cout<<"age is "<<age;
+    cout<<"rol is "<<roll;
+    
+}
+ 
+
+};
+int main()
+{
+  cop c(10);
+  c.displ();
+
+  cop C(20,30);
+  C.displ();
+
+  cop cc(C);               //copy constructor called
+  cc.displ();
+
+}
