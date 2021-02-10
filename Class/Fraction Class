@@ -1,0 +1,55 @@
+#include<iostream>
+using namespace std;
+#include<math.h>
+class Fraction 
+{ private:
+    int numerator,denominator;
+    
+    public:
+    Fraction(int numerator, int denominator)
+    {
+        this->numerator=numerator;
+        this->denominator=denominator;
+    }
+    void print()
+    {
+        cout<<numerator<<" / "<<denominator;
+    }
+     
+    void add(Fraction f2)
+    {
+    int lcm=denominator*f2.denominator;
+    int x=(lcm/denominator)*this->numerator;
+    int y=(lcm/f2.denominator)*f2.numerator;
+    //cout<<(x+y)<<" / "<<lcm;
+
+   numerator=x+y;    //we are storing it into the numerator and denominator of fraction f1
+  denominator=lcm;
+  
+    }
+
+    
+
+    void simplify()
+    { int mini=min(numerator,denominator);
+    int gcd=1;
+        for(int i=1;i<=mini;i++)
+        {
+          if(numerator%i==0 && denominator%i==0)
+          {
+              gcd=i;
+          }
+        }
+                  cout<<"The fraction after simplification is : "<<this->numerator/gcd<<" / "<<denominator/gcd;
+
+    }
+};
+int main()
+{
+
+Fraction f(2,9);
+Fraction f2(4,8);
+f.add(f2);
+f.print();
+f.simplify();
+}
