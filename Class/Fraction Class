@@ -16,7 +16,7 @@ class Fraction
         cout<<numerator<<" / "<<denominator;
     }
      
-    void add(Fraction f2)
+    void add(Fraction const & f2)  // &is usede to save the memory which can be made by using copy constructor and const is used so that reference variable cannot make changes to the main value
     {
     int lcm=denominator*f2.denominator;
     int x=(lcm/denominator)*this->numerator;
