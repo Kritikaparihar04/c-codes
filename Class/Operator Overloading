@@ -1,0 +1,80 @@
+ #include<iostream>
+using namespace std;
+#include<math.h>
+class Fraction 
+{ private:
+    int numerator,denominator;
+    
+    public:
+    Fraction(int numerator, int denominator)
+    {
+        this->numerator=numerator;
+        this->denominator=denominator;
+    }
+    void print()
+    {
+        cout<<numerator<<" / "<<denominator<<endl;
+    }
+     
+    //now if we want to use + symbol for the addition , then we want the operator overloading 
+    Fraction operator+(Fraction const & f2) const
+    {
+     int lcm=denominator*f2.denominator;          
+    int x=(lcm/denominator)*this->numerator;
+    int y=(lcm/f2.denominator)*f2.numerator;
+    //cout<<(x+y)<<" / "<<lcm;
+
+   int num=x+y;    //we are storing it into the numerator and denominator of fraction f1
+   Fraction fnew(num,lcm);
+   fnew.simplify();
+   return fnew;   
+    }
+    
+     Fraction operator*(Fraction const& f2) const
+    {
+        int x=this->numerator*f2.numerator;
+        int y=denominator*f2.denominator;
+        Fraction fnew(x,y);
+        return fnew;
+    }
+
+ bool operator==(Fraction const & f2) const
+{
+    return(this->numerator==f2.numerator && this->denominator==f2.denominator);
+     
+}
+    void simplify()
+    { int mini=min(numerator,denominator);
+    int gcd=1;
+        for(int i=1;i<=mini;i++)
+        {
+          if(numerator%i==0 && denominator%i==0)
+          {
+              gcd=i;
+          }
+        }
+                  cout<<"The fraction after simplification is : "<<this->numerator/gcd<<" / "<<denominator/gcd<<endl;
+
+    }
+
+   
+};
+int main()
+{
+
+Fraction f1(2,9);
+Fraction f2(2,9);
+
+Fraction t=f1 +f2;
+Fraction m=f1*f2;
+m.print();
+if(f1==f2)
+{
+     cout<<"equal";
+}
+else{
+    cout<<"not equal";
+}
+
+ 
+}
