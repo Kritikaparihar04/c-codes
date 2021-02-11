@@ -1,0 +1,38 @@
+#include<iostream>
+using namespace std;
+class stud{
+        private:
+        int a,b;
+
+
+public:
+           stud()
+           {
+               cout<<"default";
+           } //default constructor
+    stud(int a){
+        this->a=a;
+
+    }
+    stud(int a,int b)
+    {
+        this->a=a;
+        this->b=b;
+    }
+
+    int getin ()const
+    {
+      return a;
+    }
+    void setin(int s)
+    {
+      a=s;
+    }
+
+};
+int main()
+{ 
+stud const s2(7);
+cout<<s2.getin();
+s1.getin();
+}
