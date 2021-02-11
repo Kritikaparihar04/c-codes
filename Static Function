@@ -1,0 +1,31 @@
+#include<iostream>
+using namespace std;
+class stud{
+  static int totals;
+ 
+   public: 
+    //declaring static variable
+  
+    int age;
+    //creating the constructor to count total students
+    stud()
+    {
+        totals++;
+    }
+     static int getstudentnumber()
+   {                                //static function
+       return totals;
+   }
+
+    //intializing  the static variable
+  
+};
+  int stud::totals=0;
+int main()
+{ 
+ //creating the objects
+ stud s1;
+ stud s2,s3;
+ //cout<<stud::totals;                   
+ cout<<stud::getstudentnumber();        //calling static function
+}
