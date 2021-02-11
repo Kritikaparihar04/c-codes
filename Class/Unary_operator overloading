@@ -1,0 +1,53 @@
+ #include<iostream>
+using namespace std;
+#include<math.h>
+class Fraction 
+{ private:
+    int numerator,denominator;
+    
+    public:
+    Fraction(int numerator, int denominator)
+    {
+        this->numerator=numerator;
+        this->denominator=denominator;
+    }
+    void print()
+    {
+        cout<<numerator<<" / "<<denominator<<endl;
+    }
+     
+     void simplify()
+    { int mini=min(numerator,denominator);
+    int gcd=1;
+        for(int i=1;i<=mini;i++)
+        {
+          if(numerator%i==0 && denominator%i==0)
+          {
+              gcd=i;
+          }
+        }
+                  cout<<"The fraction after simplification is : "<<this->numerator/gcd<<" / "<<denominator/gcd<<endl;
+
+    }
+    //now if we want to use + symbol for the addition , then we want the operator overloading 
+     Fraction& operator++()
+     {
+         numerator=numerator+denominator;
+         simplify();
+         return *this;
+     }
+
+
+    
+
+   
+};
+int main()
+{
+
+Fraction f1(2,9);
+Fraction f2(2,9);
+Fraction f3=++(++f1);
+
+ 
+}
