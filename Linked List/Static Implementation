@@ -12,12 +12,26 @@ this->data=data;
 next=NULL;
 }
 };
-void print(node *head)
+
+/*void print(node *head)
  {
      while(head!=NULL)
      {
          cout<<head->data<<" ";
          head=head->next;
+     }
+ }
+ */
+ 
+ //we are using the temp pointer so that we dont loose the address of the first node which is present in the head pointer
+ 
+ void print(node *head)
+ {
+     node *temp=head;
+     while(temp!=NULL)
+     {
+         cout<<temp->data<<" ";
+         temp=temp->next;
      }
  }
 int main()
