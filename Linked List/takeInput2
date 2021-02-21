@@ -1,0 +1,56 @@
+#include<iostream>
+using namespace std;
+class node{
+
+    public:
+    int data;
+    node *next;
+    node(int data)  //parameterized constructor
+    {
+     this->data=data;
+     this->next=NULL;
+    }
+
+};
+void print(node *head)
+{
+    node *temp=head;
+    while(temp!=NULL)
+    {
+        cout<<temp->data<<" ";
+        temp=temp->next;   //update the temp
+    }
+}
+
+node *takeInput()
+{
+    int data;
+    cin>>data; //user will enter the data
+     node *head=NULL;     //when head and tail both null, it meams its an empty linked list
+     node *tail=NULL;
+
+    while(data!=-1)
+    {
+        node *newNode= new node(data);
+        if(head==NULL)
+        {
+            head=newNode;  
+            tail=newNode;
+        }
+        else{
+            //by using tail we dont need to use the while loop to run through the linked list
+            tail->next=newNode;
+            tail= tail->next; //in this tail is updated to the last node
+        }
+
+        cin>>data;
+
+    }
+    return head;
+}
+
+int main()
+{
+    node *head= takeInput();
+    print(head);
+}
