@@ -30,18 +30,30 @@ void print(node *head)
 
 void deleteNode(node *head, int i)
 {
- int count=0;
- node *temp=head;
- while(count<i-1)
- {
-     temp=temp->next;  //traversing the linkedlist
-
- }   
- node *a=temp->next;   
- node* b=a->next;
- temp->next=b;
-cout<<endl;
-
+  
+    if(head==NULL){
+        return head;
+	}
+    
+    if(pos==0){
+        return head->next;
+    }
+    
+    Node *curr = head;
+    
+    int currPos = 0;
+    while(curr != NULL && currPos < pos - 1)
+    {
+   		 	++currPos;
+    		curr = curr->next;
+    }
+    if(curr == NULL || curr->next == NULL)
+    {
+    return head;
+    }
+    curr->next = curr->next->next;
+	return head;
+    
 }
 int main()
 {
