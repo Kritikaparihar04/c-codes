@@ -1,0 +1,13 @@
+int length(Node *head) {
+    // base condition
+    
+    Node *temp=head;
+    
+    if(temp==NULL)
+        return 0;
+    
+    //small calculation
+    else{
+    return length(temp->next)+1 ;
+    }
+}
