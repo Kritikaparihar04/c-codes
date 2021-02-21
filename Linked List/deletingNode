@@ -1,0 +1,55 @@
+#include<iostream>
+using namespace std;
+
+class node
+{
+public:
+int data;
+node *next;
+//parameterized constructor
+node(int data)
+{
+    this->data=data;
+    this->next=NULL;
+}
+
+};
+
+//print function
+void print(node *head)
+{
+    //temp for not changing the head
+    node *temp=head;
+    while(temp!=NULL)
+    {
+        cout<<temp->data<<" ";
+        temp=temp->next;
+    }
+}
+ 
+
+void deleteNode(node *head, int i)
+{
+ int count=0;
+ node *temp=head;
+ while(count<i-1)
+ {
+     temp=temp->next;  //traversing the linkedlist
+
+ }   
+ node *a=temp->next;   
+ node* b=a->next;
+ temp->next=b;
+cout<<endl;
+
+}
+int main()
+{
+    node *head=takeInput();
+    print(head);
+    int pos;
+    cout<<"enter the index from which you want to delete the node ";
+    cin>>pos;
+   deleteNode(head,pos);
+   print(head);
+}
