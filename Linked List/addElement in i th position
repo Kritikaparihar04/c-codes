@@ -1,0 +1,88 @@
+#include<iostream>
+using namespace std;
+
+class node{
+public:
+int data;
+node *next;
+//parameterized constructor
+node(int data)
+{
+    this->data=data;
+    this->next=NULL;
+}
+
+};
+
+//print function
+void print(node *head)
+{
+    //temp for not changing the head
+    node *temp=head;
+    while(temp!=NULL)
+    {
+        cout<<temp->data<<" ";
+        temp=temp->next;
+    }
+}
+
+//takeInput function to get data value from users
+
+node *takeInput()
+{
+    int data;
+    cin>>data;  //from users
+
+    node *head= NULL;
+    node *tail=NULL;
+
+    while(data!=-1)
+    {
+        node *newNode=new node(data);
+        if(head==NULL)
+        {
+            head=newNode;
+            tail=newNode;
+        }
+        else
+        {
+            tail->next=newNode;
+            tail=tail->next;
+
+        }
+        cin>>data;
+
+    }
+    return head;
+}
+
+void insertNode(node* head, int i, int data){
+
+    node *temp=head;
+    int count=0;
+    node *newnode=new node(data);
+    while(count<i-1)
+    {
+        temp=temp->next;
+        count++;
+    }
+    node *a= temp->next; //we will store the address of the next node in the variable so that the further list should not be lost
+    temp->next=newnode;
+    temp=temp->next;
+    newnode->next=a;
+     
+    cout<<endl;
+}
+
+
+int main()
+{
+    node *head=takeInput();
+    print(head);
+    cout<<"enter the position where you want to insert";
+    cin>>pos;
+    cout<<"enter the data you want to enter";
+    insertNode(head,pos,input);
+    print(head);
+   
+}
