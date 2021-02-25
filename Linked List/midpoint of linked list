@@ -1,0 +1,17 @@
+if(head==NULL)
+        return head;
+    
+    Node *slow=head;
+    Node *fast=head->next;	// to make sure that if ll is even length then the middle element is correctly found
+    while(fast!=NULL && fast->next !=NULL) // && should be used ..
+    {
+        // No need of printing
+        slow=slow->next;
+        fast=fast->next->next;        
+            
+    }
+    // we need to return the node
+    return slow;
+    
+     
+}
