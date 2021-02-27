@@ -1,0 +1,95 @@
+#include<iostream>
+using namespace std;
+#include<climits>
+
+ class stackUsingArray{
+                                //declaring them private so that it is not accessible by everyone
+int *data;
+int nextIndex;
+int capacity;
+
+public:
+
+                                 //default constructor to take the array size from user
+stackUsingArray(int totalSize)
+{
+    //creating the array
+    data=new int[totalSize];
+  nextIndex=0;
+capacity=totalSize;
+}
+ 
+int size()
+{                               //nextIndex can clearly indicate the size of array
+     return nextIndex;
+
+}
+
+int top()
+{                                //nextIndex-1 beacause is point par humara nextIndex ek aage point kar ra hoga , so current top k lie -- karnma padega
+    return data[nextIndex-1];
+}
+
+bool isEmpty()
+{
+    /*
+    if(nextIndex==0)
+     return true;
+    else
+    return false;
+    */
+   
+   //short cut of above loop can be
+
+    return nextIndex==0;
+
+    //it means it will return true if nextIndex would be 0 else it would return false
+
+}
+
+
+void push(int element)
+{
+                                          //checking the overflow condition
+    if(capacity==nextIndex)
+    {
+        cout<<"Stack is full"<<endl;
+        return;
+    }
+     
+    data[nextIndex]=element;             //inserting the element in the top of the stack
+    nextIndex++;
+
+}
+
+int pop()
+{
+    if(nextIndex==0)
+    {
+        cout<<"stack is empty"<<endl;           //checking the underflow condition
+        return INT_MIN;
+    }
+     nextIndex--;                             
+    return data[nextIndex];
+}
+ };
+
+
+int main()
+{
+     //creating the object of our stack class
+     stackUsingArray s(4); // stack of size 4  will create
+     s.push(10);
+     s.push(20);
+     s.push(30);
+     s.push(40);
+   //  s.push(50);   //at this point stack will overflow
+
+   cout<<s.top()<<endl;       
+   cout<<s.pop()<<endl;
+   cout<<s.pop()<<endl;
+   cout<<s.isEmpty()<<endl;
+   cout<<s.size()<<endl;
+
+    
+}
