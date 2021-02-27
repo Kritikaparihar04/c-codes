@@ -1,0 +1,105 @@
+#include<iostream>
+using namespace std;
+#include<climits>
+
+ class stackUsingArray{
+                                //declaring them private so that it is not accessible by everyone
+int *data;
+int nextIndex;
+int capacity;
+
+public:
+
+                                 //default constructor to take the array size from user
+stackUsingArray( )
+{
+  nextIndex=0;
+ int *data;
+}
+ 
+
+int top()
+{                                //nextIndex-1 beacause is point par humara nextIndex ek aage point kar ra hoga , so current top k lie -- karnma padega
+    return data[nextIndex-1];
+}
+
+bool isEmpty()
+{
+    /*
+    if(nextIndex==0)
+     return true;
+    else
+    return false;
+    */
+   
+   //short cut of above loop can be
+
+    return nextIndex==0;
+
+    //it means it will return true if nextIndex would be 0 else it would return false
+
+}
+
+
+void push(int element)
+{
+                                          //checking the overflow condition
+    if(capacity==nextIndex)
+    {
+        //jaise he stack ful hoga we will create the new stack of double size
+
+        int *newArray=new int[2 * capacity];
+
+        //copying the elements of the previous array into the new one
+        for(int i=0;i<capacity;i++)
+        {
+            newArray[i]=data[i];
+        }
+
+        //incresing the size of the capacity to double
+        capacity*=2;
+        delete [] data;     //delete the previous data 
+        data =newArray; //data will point to new data
+    }
+     
+    data[nextIndex]=element;             //inserting the element in the top of the stack
+    nextIndex++;
+
+}
+
+
+int size()
+{
+    return nextIndex;
+}
+int pop()
+{
+    if(nextIndex==0)
+    {
+        cout<<"stack is empty"<<endl;           //checking the underflow condition
+        return INT_MIN;
+    }
+     nextIndex--;                             
+    return data[nextIndex];
+}
+ };
+
+
+int main()
+{
+     //creating the object of our stack class
+     stackUsingArray s; //default constructor will call
+     s.push(10);
+     s.push(20);
+     s.push(30);
+     s.push(40);
+   s.push(50);   //at this point stack will not overflow because usinf dynamic approach
+
+   cout<<s.top()<<endl;       
+  
+   cout<<s.top()<<endl;
+   cout<<s.isEmpty()<<endl;
+ 
+ cout<<s.size();
+    
+}
