@@ -1,0 +1,44 @@
+#include<iostream>
+using namespace std;
+
+//template 
+template <typename T ,typename V>     //creating the pair with different different  data type
+class Pair{
+T x;
+V y;
+public:
+//we will create 4 functions here to access the private element
+void setX(T x)
+{
+    this->x=x;
+
+}
+T getX()                        //it will return of type T
+{
+    return x;
+}
+
+void setY(V y)
+{
+    this->y=y;
+}
+V getY()                           //will return of type V
+{
+    return y;
+}
+
+
+
+};
+
+
+
+int main()
+{
+    Pair<int,char> p1;   //creating the object for datatype int
+     p1.setX(10);                           //of int type
+     p1.setY('k');                          //of char type
+   cout<<p1.getX()<<" "<<p1.getY();
+
+  
+}
