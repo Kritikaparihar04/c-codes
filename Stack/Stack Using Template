@@ -1,0 +1,106 @@
+#include<iostream>
+using namespace std;
+#include<climits>
+template<typename T>
+
+class stack{
+
+T *data; //T type ka data
+int nextIndex; //because it is used to find the index thats why  of int type
+int capacity ; 
+
+public:
+stack()  
+{ //no need to provide the size as it is dynamic
+  data=new T[4];      //creating the dynamic data of default size 4 and type T
+  nextIndex=0;
+  capacity=4;
+
+}
+
+//we have 5 functions
+int size()
+{
+    return nextIndex;
+}
+
+T top()            //type T element return
+{
+    return data[nextIndex-1];
+}
+
+bool IsEmpty()
+{
+    return nextIndex==0;
+}
+
+void push(T element)
+{
+    // if the capacity full, in this loop we are creating the newdata of double the size of capacity 
+    //and just copying the value from data to new data , no assignment of element is done in this loop
+    if(capacity==nextIndex)
+    {
+        T *newData=new T[2*capacity];
+        for(int i=0;i<capacity;i++)  //copying the elements from data to new data 
+        {
+             newData[i]=data[i];
+        }      
+        capacity*=2;                     //doubling the size of the capacity
+       
+       delete[] data ;     //deleting the data from memory
+       data=newData;  //data will now point to new data
+
+
+    }
+                                               //now if if-loop will run then it cannot use the outside loop data because till that point data would be deleted from memory 
+   
+    data[nextIndex]=element;                     
+    nextIndex++;
+
+}
+
+T pop()          //pop will return the element thats why T type
+{
+     if(nextIndex==0)
+     {
+         cout<<"stack is empty";
+         return CHAR_MIN;
+     }
+       nextIndex--;
+       return data[nextIndex];
+   
+}
+
+
+};
+
+int main()
+{
+  stack<char> s1;
+  s1.push('A');
+  s1.push('B');
+  s1.push('C');
+  s1.push('D');
+  s1.push('E');
+
+   cout<<s1.pop()<<endl;
+   cout<<s1.pop()<<endl;
+   cout<<s1.pop()<<endl;
+   cout<<s1.pop()<<endl;
+   cout<<s1.pop()<<endl;
+
+   stack<int> s2;
+   s2.push(10);
+   s2.push(20);
+   s2.push(30);
+   s2.push(40);
+   s2.push(50);
+
+   cout<<s2.pop()<<endl;
+   cout<<s2.pop()<<endl;
+   cout<<s2.pop()<<endl;
+   cout<<s2.pop()<<endl;
+   cout<<s2.pop()<<endl;
+   cout<<s2.pop();       //as at this point our stack is empty so msg will print
+
+}
