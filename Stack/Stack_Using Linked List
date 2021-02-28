@@ -1,0 +1,91 @@
+#include<iostream>
+using namespace std;
+
+template<typename T>
+
+class node{
+    public:
+    T data;  //t type ka data h
+    node<T> *next;
+
+    //constructor to initialize the data item
+    node(T data)
+    {
+        this->data=data;
+        next=NULL;
+    }
+};
+
+template<typename T>
+class stack{
+node <T> *head;
+int size; // it specifies the size of the stack
+
+public:
+stack()         //constructor to initialie the data members
+{
+ head=NULL;
+ size=0;               //it means stack is empty rn
+}
+
+bool isEmpty()
+{
+return size==0;
+}
+
+int getSize()
+{
+    return size;
+}
+
+T top()
+{
+    if(isEmpty())
+    return 0;
+
+    return head->data;
+}
+
+void push(T element)
+{
+node<T> *newNode=new node <T>(element);   //new node
+
+newNode->next=head;
+head=newNode;
+size++;
+
+//in case of linked list we dont need to worry about overflow
+
+}
+
+T  pop()
+{//to check is empty or not
+if(isEmpty())
+return 0;
+
+
+T ans=head->data;
+node<T> *temp=head;
+head=head->next;
+
+delete temp;
+size--;
+return ans;
+}
+
+
+
+} ;
+
+
+int main()
+{
+stack<char>s;
+s.push('A');
+s.push('B');
+s.push('C');
+s.push('D');
+cout<<s.pop();
+cout<<s.pop();
+cout<<s.getSize();
+}
