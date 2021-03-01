@@ -1,0 +1,46 @@
+ #include<iostream>
+ using namespace std;
+ #include<string>
+ #include<stack>   //inbuilt stack
+ bool isBalance(string exp)
+ {
+     stack<char> s;   
+     int l=exp.length();
+ int i=0;
+ while( i<l)
+ {
+     if(exp[i]=='(')
+        {
+            s.push('(');
+            i++;
+        }
+      else if(exp[i]==')')
+      {
+          if(s.size()!=0)
+          {
+              s.pop();
+          }
+          i++;
+      }
+    else
+    i++;
+
+
+ }
+if(s.size()!=0)
+return false;
+else
+ return true; 
+ }
+
+ int main()
+ {
+
+string exp;
+cout<<"Enter the string"<<endl;
+cin>>exp;
+cout<<"Is the string is balanced !"<<endl;
+cout<< ((isBalance(exp)) ? "true" : "false");
+      
+   
+  }
