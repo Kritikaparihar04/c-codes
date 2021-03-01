@@ -1,0 +1,24 @@
+ #include<iostream>
+ using namespace std;
+ #include<stack>   //inbuilt stack
+
+ int main()
+ {
+    //initialize like this
+    stack<int> s1;
+     for(int i=0;i<5;i++)
+     {
+         s1.push(i);
+     }
+    cout<<s1.top()<<endl;
+
+    for(int i=0;i<4;i++)
+     {
+         s1.pop();
+     } //gonna delete the top most element
+    cout<<s1.size();
+
+
+
+
+ }
