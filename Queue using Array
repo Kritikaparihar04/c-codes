@@ -1,0 +1,45 @@
+#include<iostream>
+using namespace std;
+ class queuee
+ {public:
+     int nextIndex=0;
+      int frnt=0;
+   void enque(int arr[],int data)
+   {   
+       arr[nextIndex]=data;
+        nextIndex++;
+   }
+   void dequeue(int arr[])
+   { 
+       frnt++;
+   }
+  
+  int size()
+  {
+      return nextIndex-frnt;
+  }
+  
+  int front()
+  {
+      return frnt;
+  }
+ };
+ int main()
+ {
+   int arr[100];
+  queuee q;
+  q.enque(arr,10);
+  q.enque(arr,20);
+  q.enque(arr,30);
+  q.enque(arr,40);
+  q.dequeue(arr);
+  q.dequeue(arr);
+  q.enque(arr,10);
+  q.enque(arr,20);
+  q.enque(arr,100);
+  q.enque(arr,200);
+  cout<<"size is "<<q.size()<<endl;
+for(int i=q.front();i<=q.size()+1;i++)
+   cout<<arr[i]<<" ";
+ 
+ }
