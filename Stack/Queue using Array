@@ -1,0 +1,110 @@
+#include<iostream>
+using namespace std;
+ template <typename T>
+
+class queue
+{
+    T *data; //array creation
+    int firstIndex;
+    int nextIndex;
+    int size;   //present size of the q
+    int capacity; //size that q can hold
+
+    public:
+    //creating the constructor to intialise the constructor
+    queue(int s)
+    {
+        data=new T[s];
+        firstIndex=-1;
+        nextIndex=0;
+        size=0;
+        capacity=s;  //because hum aage size ko access nhi kar paege because its in private
+
+    }
+
+   int getSize()
+   {
+             return size;
+   }
+
+ bool isEmpty()
+ {
+    return size==0;
+
+ }
+
+ T front()  //T because it will return the data as specefied before
+ {  
+         if(isEmpty())
+         { 
+             cout<<"Queue is empty";
+         return 0;
+         }
+         return data[firstIndex];
+ 
+ }
+
+void enqueue(T element)
+{
+    if(size==capacity)
+    {
+        cout<<"queue is full";
+        return;
+    }
+
+   data[nextIndex]=element;
+   nextIndex=(nextIndex+1)%capacity;   //its because if the element is at last index and starting indexes are free if we 
+   //doo nextindec\x++ then elemenet will be put in out of queue ..for this we are taking modulus and taking care of the overflow condition
+    
+    //if it is the first element to be inserted than change the first indec from -1 to 0
+    if(firstIndex==-1)
+    {
+        firstIndex=0;
+    }
+    size++;    //increase the size
+
+}
+
+
+T deque()
+{
+   if(isEmpty())
+   {
+       cout<<"queue is empty";
+       return 0;          //0 because it fits to every situation
+   }
+
+ T ans=data[firstIndex];
+ firstIndex=(firstIndex+1)%capacity;
+ size--;
+
+
+ //check condition if q got empty after size-- then set in firstIndex and nextIndex to their initial values
+
+ if(size==0)
+ {
+     firstIndex=-1;
+     nextIndex=0;
+
+ }
+
+ return ans;   //returning the poped element
+   
+}
+
+};
+
+
+
+int main()
+{
+queue <int>q(4);   //creating the queue of integer type of size of 4
+q.enqueue(10);
+q.enqueue(20);
+q.enqueue(30);
+cout<<q.getSize();
+
+cout<<q.front();
+q.enqueue(50);
+q.enqueue(60);
+}
