@@ -3,6 +3,7 @@ void removeConsecutiveDuplicates(char *input) {
     //base case
     if(input[0]=='\0')
         return;
+	
     
     //now we do some calculation
     
