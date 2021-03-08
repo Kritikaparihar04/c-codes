@@ -1,0 +1,57 @@
+#include<iostream>
+using namespace std;
+#include<vector>
+template<typename T>
+class TreeNode{
+public:
+T data;
+vector <TreeNode<T>*>children;    //we have created the children vector to store all the nodes of root node or its parent node    
+
+TreeNode(int data)
+{
+  this->data=data;
+
+}
+
+};
+
+void printTree(TreeNode<int> *root)
+{                           //its an edge case not the base case
+if(root==NULL)
+{
+  return;               
+}
+
+cout<<root->data<<" : ";
+for(int i=0;i<root->children.size();i++)
+{
+  cout<<root->children[i]->data;
+  cout<<" , ";
+}
+cout<<endl;
+
+for(int i=0;i<root->children.size();i++)
+{
+  printTree(root->children[i]);
+}
+
+}
+
+
+
+int main()
+{//we have to create the root node and child node
+TreeNode<int>*root=new TreeNode<int>(10);    
+TreeNode<int>*node1=new TreeNode<int>(20);
+TreeNode<int>*node2=new TreeNode<int>(30);
+
+
+//to connect the nodes
+root->children.push_back(node1);
+root->children.push_back(node2);
+
+//call the print function
+printTree(root);
+
+
+}
