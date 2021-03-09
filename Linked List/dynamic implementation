@@ -23,6 +23,7 @@ void print(node *head)
      }
  }
 int main()
+
 {
     //dynamically creating the nodes
    node *n1=new node(10);
