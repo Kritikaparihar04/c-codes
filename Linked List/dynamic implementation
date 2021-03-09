@@ -31,6 +31,7 @@ int main()
    node *n3=new node(30);
    node *n4=new node(40);
 
+
    //connect the nodes to each other
    n1->next=n2;
    n2->next=n3;
