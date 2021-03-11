@@ -30,6 +30,7 @@ using namespace std;
   queuee q;
   q.enque(arr,10);
   q.enque(arr,20);
+  
   q.enque(arr,30);
   q.enque(arr,40);
   q.dequeue(arr);
