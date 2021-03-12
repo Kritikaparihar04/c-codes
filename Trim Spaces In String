@@ -11,6 +11,7 @@ void trimSpaces(char input[])
 			}
     	  j--;
     	}
+	
         
         j++;
 	}
