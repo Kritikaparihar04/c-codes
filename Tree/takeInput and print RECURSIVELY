@@ -1,0 +1,73 @@
+#include<iostream>
+using namespace std;
+#include<vector>
+template<typename T>
+
+class TreeNode{
+
+public:
+T data;
+vector<TreeNode< T>*>children; 
+TreeNode(int data)
+{
+    this->data=data;
+}
+
+
+};
+
+TreeNode<int>* takeInput()
+{
+int rootData;
+cout<<"Please enter the root data"<<endl;
+cin>>rootData;
+
+TreeNode<int >* root=new TreeNode<int>(rootData);
+
+int n;
+cout<<"enter the number of children of "<<root->data<<endl;
+cin>>n;
+for(int i=0;i<n;i++)
+{
+    TreeNode<int>*child=takeInput();
+    root->children.push_back(child);   //child will connect to its respective parent
+}
+
+
+return root;
+
+}
+
+void print(TreeNode<int> * root)
+{
+    if(root==NULL)             //its an edge case not the base case
+    {
+        return;           
+    }
+
+cout<<root->data<<": ";
+for(int i=0;i<root->children.size();i++)
+{
+    cout<<root->children[i]->data<<", ";
+
+}
+cout<<endl;
+
+
+//call recursion
+for(int i=0;i<root->children.size();i++)
+{
+    print(root->children[i]);
+}
+
+}
+
+
+
+int main()
+{
+    TreeNode <int>*root =takeInput();
+    print(root);
+
+
+}
