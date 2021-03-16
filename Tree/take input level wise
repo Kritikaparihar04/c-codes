@@ -1,0 +1,84 @@
+#include<iostream>
+using namespace std;
+#include<vector>
+#include<queue>
+
+template<typename T>
+
+class TreeNode{
+
+public:
+T data;
+vector<TreeNode< T>*>children; 
+TreeNode(int data)
+{
+    this->data=data;
+}
+
+
+};
+ 
+
+void print(TreeNode<int> * root)
+{
+    if(root==NULL)             //its an edge case not the base case
+    {
+        return;           
+    }
+
+cout<<root->data<<": ";
+for(int i=0;i<root->children.size();i++)
+{
+    cout<<root->children[i]->data<<", ";
+
+}
+cout<<endl;
+
+
+//call recursion
+for(int i=0;i<root->children.size();i++)
+{
+    print(root->children[i]);
+}
+
+}
+
+TreeNode<int>*takeInputLevelWise()
+{
+   int rootData;
+   cout<<"entere the root data : ";
+   cin>>rootData;
+   
+   TreeNode<int >*root=new TreeNode<int>(rootData);
+   
+   queue<TreeNode<int >*> pendingQ;
+
+    pendingQ.push(root);
+
+    while(pendingQ.size()!=0)
+    {
+            TreeNode<int>*front=  pendingQ.front();
+            pendingQ.pop();
+
+            cout<<"enter the number of child of "<<front->data;
+            int numchild ;
+            cin>>numchild;
+            for(int i=0;i<numchild;i++)
+            {
+                int childData;
+                cout<<"enter the "<<i<<"th child of "<<root->data;
+                cin>>childData;
+                TreeNode<int>*child=new TreeNode<int>(childData);
+                front->children.push_back(child);
+                pendingQ.push(child);
+            }
+    }
+return root;
+ }
+int main()
+{
+    TreeNode <int>*root =takeInputLevelWise();
+    print(root);
+
+
+}
