@@ -1,4 +1,5 @@
 bool checkPalindrome(char str[]) {
+
     
   int  len=strlen(str);
  
