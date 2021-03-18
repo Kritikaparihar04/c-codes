@@ -6,6 +6,7 @@ bool checkPalindrome(char str[]) {
     {
         if(str[i]!=str[len-i-1])
            {
+           
                return false;
            }
     }
