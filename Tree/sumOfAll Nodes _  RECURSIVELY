@@ -1,0 +1,14 @@
+
+int sumOfNodes(TreeNode<int>* root) {
+    
+    
+ int ans=root->data;     //it is int because it has to store the integer value
+    
+    for(int i=0;i<root->children.size();i++)
+    {
+        ans+=sumOfNodes(root->children[i]);         //recursion call  hore hI har child k loe
+        
+    }
+    return ans;         //returning the final ans of the sum if all nodes int the tree
+    
+}
