@@ -1,0 +1,33 @@
+
+#include<queue>
+
+TreeNode<int>* maxDataNode(TreeNode<int>* root) {
+    if(root==NULL)
+        return 0;                    //edge case
+    
+    
+    
+TreeNode<int>* max=root;   // it will store the maximum value of node of the tree
+   
+ queue<TreeNode<int>*> help;
+    
+    help.push(root);
+    
+    while(help.size()!=0)
+    {
+        	TreeNode<int>*front=help.front();
+        help.pop();
+        
+        if(max->data<front->data)
+            max=front;
+        
+        for(int i=0;i<front->children.size();i++)
+        {
+            help.push(front->children.at(i));
+        }
+        
+    }
+    return max;
+    
+     
+}
