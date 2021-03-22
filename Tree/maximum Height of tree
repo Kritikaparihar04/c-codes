@@ -1,0 +1,23 @@
+
+
+int getHeight(TreeNode<int>* root) {
+
+//edge case
+    
+    if(root==NULL)
+        return 0;
+    
+    
+    int ans=0;             //maximum height till now
+    
+    for(int i=0;i<root->children.size();i++)
+    {
+        int childHeight=getHeight(root->children[i]);   //har node m call hora ....recursion
+        if(childHeight>ans)
+            ans=childHeight;
+        
+    }
+    return ans+1;
+        
+        
+    }
