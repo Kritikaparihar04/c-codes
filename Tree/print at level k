@@ -1,6 +1,11 @@
 void printAtLevelK(<TreeNode<int>*>root,int k)
 {
 
+//edge case
+if(root==NULL)
+return;
+
+
 //base case
 if(k==0)
 {
