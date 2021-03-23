@@ -1,0 +1,138 @@
+#include<iostream>
+using namespace std;
+
+#include<queue>
+template <typename T>
+
+
+class binaryTree{
+
+public:
+  T data;
+  binaryTree<T>*left;
+  binaryTree<T>*right;
+  binaryTree(T data)
+  {
+      this->data=data;
+      left=NULL;
+      right=NULL;
+  }
+
+  ~binaryTree()
+  {
+      delete left;
+      delete right;
+  }
+};
+
+
+
+
+
+binaryTree<int>*takeInputLevelwise()
+{    
+    int rootdata;
+    cout<<"Enter the root data: ";
+    cin>>rootdata;
+ 
+    if(rootdata==-1)
+    return NULL;
+
+    binaryTree<int>*root=new binaryTree<int>(rootdata);
+    queue<binaryTree<int>*> helpQ;
+    helpQ.push(root);
+
+ while ( helpQ.size()!=0)
+ {
+     binaryTree<int>* front=helpQ.front();
+     helpQ.pop();
+
+    cout<<"Enter the left child of"<<front->data;
+    int leftChild;
+    cin>>leftChild;
+    if(leftChild!=-1)
+    {
+    binaryTree<int>*child= new binaryTree<int>(leftChild); 
+    front->left=child;
+    helpQ.push(child);
+ 
+ }
+ 
+ cout<<"Enter the right child data of"<<front->data;
+ int rightchild;
+ cin>>rightchild;
+  if(rightchild!=-1)
+{
+    binaryTree<int>*child=new binaryTree<int>(rightchild);
+    front->right=child;
+    helpQ.push(child);
+}
+
+ }
+ 
+
+return root;
+}
+
+
+
+void print(binaryTree<int>*root)
+{ 
+ if(root==NULL)
+ return;
+
+
+    cout<<root->data<<": ";
+    if(root->left!=NULL)
+   cout<<"L"<<root->left->data<<", ";
+
+   if(root->right!=NULL)
+   cout<<"R"<<root->right->data;
+
+cout<<endl;
+print(root->left);
+print(root->right);
+
+}
+
+
+/*
+binaryTree<int>*takeInput()
+{
+int rootdata;
+cout<<"Enter the data : ";
+cin>>rootdata;
+
+if(rootdata==-1)
+ return NULL;
+
+binaryTree<int>*root=new binaryTree<int>(rootdata);
+
+binaryTree<int>*leftChild=takeInput();
+binaryTree<int>*rightChild=takeInput();
+
+root->left=leftChild;
+root->right=rightChild;
+
+return root;
+}
+*/
+
+int main()
+{
+  
+  /*binaryTree<int>* root=new binaryTree<int>(1);
+  binaryTree<int>*node1=new binaryTree<int>(2);
+  binaryTree<int>*node2=new binaryTree<int>(3);
+
+
+
+
+  root->left=node1;
+  root->right=node2;
+*/
+  binaryTree<int>*root= takeInputLevelwise();
+  print(root);
+delete root;
+
+}
