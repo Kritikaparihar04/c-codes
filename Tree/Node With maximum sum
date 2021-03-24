@@ -1,0 +1,39 @@
+TreeNode<int>* maxSumNode(TreeNode<int>* root) {
+    
+    if(root==NULL)
+        return NULL;
+    
+    
+  TreeNode<int>*max=root;
+    int s=0;
+    int sum = root->data;
+    TreeNode<int>*ans;
+    
+
+        for(int i=0;i<root->children.size();i++)
+        {    
+            sum+=root->children[i]->data;
+        //   maxSumNode(root->children.at(i));
+            
+        }
+        
+    //recursive calls
+    for(int i=0;i<root->children.size();i++){
+        TreeNode<int> *x=maxSumNode(root->children[i]);
+        s=x->data;
+        //calculating recursion answer's sum
+        for(int j=0;j<x->children.size();j++){
+            s+=x->children[j]->data;
+        }
+        
+        //comparison
+        if(sum<s)
+        {
+            s=sum;
+            max=x;
+        }
+    }
+   
+    return max;
+    }
+    
