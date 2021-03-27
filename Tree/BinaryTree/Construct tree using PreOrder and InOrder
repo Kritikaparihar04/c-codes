@@ -1,0 +1,154 @@
+
+BinaryTreeNode<int>* buildTreeHelp(int* in, int* pre, int inS, int inE, int preS, int preE){
+ 
+                                   //list is not existing
+    if(preS>preE){
+        return NULL;
+    }
+    
+    
+    
+    int rootdata=pre[preS];   //preorder first element is always a root
+    int rootIndex = -1;          
+                                                   
+    for(int i=inS;i<=inE;i++){       //Inorder mei root ka index
+        if(in[i]==rootdata){
+            rootIndex=i;
+            break;`
+        }
+    }
+    
+
+    int lInS=inS;               //inorder ka left ka start
+    int lInE=rootIndex-1;       //inorder ka left end
+    int lPreS=preS+1;           //preorder ka left start
+    int lPreE=lInE-lInS+lPreS;  //preorder left end
+    
+    int rPreS=lPreE+1;          //preorder right start
+    int rPreE=preE;             //preorder right end
+    int rInS=rootIndex+1;       //inorder right start
+    int rInE=inE;               //inorder right end
+    
+    
+    BinaryTreeNode<int>* root = new BinaryTreeNode<int>(rootdata);       //root node create
+    root->left=buildTreeHelp(in,pre,lInS,lInE,lPreS,lPreE);              //recursion for the left tree
+    root->right=buildTreeHelp(in,pre,rInS,rInE,rPreS,rPreE);             //recursion for the right tree
+    
+    
+    return root;
+}
+
+
+BinaryTreeNode<int>* buildTree(int *preorder, int preLength, int *inorder, int inLength) {
+    // Write your code here
+    return buildTreeHelp(inorder,preorder,0,inLength-1,0,preLength-1);            //len-1 because hum index zero se start kara re h
+}
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+	template <typename T>
+	class BinaryTreeNode {
+    	public : 
+    	T data;
+    	BinaryTreeNode<T> *left;
+    	BinaryTreeNode<T> *right;
+
+    	BinaryTreeNode(T data) {
+        	this -> data = data;
+        	left = NULL;
+        	right = NULL;
+    	}
+	};
+  
+  
+  
+  
+  #include <iostream>
+#include <queue>
+
+template <typename T>
+class BinaryTreeNode {
+   public:
+    T data;
+    BinaryTreeNode<T> *left;
+    BinaryTreeNode<T> *right;
+
+    BinaryTreeNode(T data) {
+        this->data = data;
+        left = NULL;
+        right = NULL;
+    }
+};
+
+using namespace std;
+#include "solution.h"
+
+BinaryTreeNode<int> *takeInput() {
+    int rootData;
+    cin >> rootData;
+    if (rootData == -1) {
+        return NULL;
+    }
+    BinaryTreeNode<int> *root = new BinaryTreeNode<int>(rootData);
+    queue<BinaryTreeNode<int> *> q;
+    q.push(root);
+    while (!q.empty()) {
+        BinaryTreeNode<int> *currentNode = q.front();
+        q.pop();
+        int leftChild, rightChild;
+        
+        cin >> leftChild;
+        if (leftChild != -1) {
+            BinaryTreeNode<int> *leftNode = new BinaryTreeNode<int>(leftChild);
+            currentNode->left = leftNode;
+            q.push(leftNode);
+        }
+
+        cin >> rightChild;
+        if (rightChild != -1) {
+            BinaryTreeNode<int> *rightNode =
+                new BinaryTreeNode<int>(rightChild);
+            currentNode->right = rightNode;
+            q.push(rightNode);
+        }
+    }
+    return root;
+}
+
+void printLevelATNewLine(BinaryTreeNode<int> *root) {
+    queue<BinaryTreeNode<int> *> q;
+    q.push(root);
+    q.push(NULL);
+    while (!q.empty()) {
+        BinaryTreeNode<int> *first = q.front();
+        q.pop();
+        if (first == NULL) {
+            if (q.empty()) {
+                break;
+            }
+            cout << endl;
+            q.push(NULL);
+            continue;
+        }
+        cout << first->data << " ";
+        if (first->left != NULL) {
+            q.push(first->left);
+        }
+        if (first->right != NULL) {
+            q.push(first->right);
+        }
+    }
+}
+
+int main() {
+    int size;
+    cin >> size;
+    int *pre = new int[size];
+    int *in = new int[size];
+    for (int i = 0; i < size; i++) cin >> pre[i];
+    for (int i = 0; i < size; i++) cin >> in[i];
+    BinaryTreeNode<int> *root = buildTree(pre, size, in, size);
+    printLevelATNewLine(root);
+}
