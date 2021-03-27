@@ -1,0 +1,38 @@
+
+void postOrder(BinaryTreeNode<int> *root) {
+	
+    if(root==NULL)
+        return;
+    
+    postOrder(root->left);
+    postOrder(root->right);
+    cout<<root->data<<" ";
+    
+    
+}
+
+void InOrder(BinaryTreeNode<int> *root) {
+	
+    if(root==NULL)
+        return;
+    
+    postOrder(root->left);
+     cout<<root->data<<" ";
+    postOrder(root->right);
+   
+    
+    
+}
+
+
+void pretOrder(BinaryTreeNode<int> *root) {
+	
+    if(root==NULL)
+        return;
+    cout<<root->data<<" ";
+    postOrder(root->left);
+    postOrder(root->right);
+  
+    
+    
+}
