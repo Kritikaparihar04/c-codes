@@ -1,0 +1,12 @@
+ int height(BinaryTreeNode<int>* root) {
+    // Write our code here
+     if(root==NULL)
+         return 0;
+    
+    int a=height(root->left)+1;
+    int b=height(root->right)+1;
+    if(a>=b)
+      return a;
+    else
+        return b;
+}
