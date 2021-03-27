@@ -1,0 +1,28 @@
+int helper(BinaryTreeNode<int>* root)
+{
+    
+    if(root==NULL)
+        return 1;
+    
+    int a=0;
+    int b=0;
+    
+    int lcount=helper(root->left)+1;
+    int rcount=helper(root->right)+1;
+    if(lcount>rcount||lcount<rcount)
+        return 1;
+    
+}
+
+bool isBalanced(BinaryTreeNode<int> *root) {
+	if(root==NULL)
+        return false;
+    
+    
+    int x=helper(root);
+    if(x==1)
+        return false;
+    
+    return true;
+    
+}
