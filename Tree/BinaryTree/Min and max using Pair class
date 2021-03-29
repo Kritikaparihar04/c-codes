@@ -1,0 +1,35 @@
+
+#include<math.h>
+#include<limits.h>
+
+pair<int, int> getMinAndMax(BinaryTreeNode<int> *root) {
+	
+    //BASE CLASS
+    if(root==NULL)
+    {
+        pair<int,int>p;
+        p.first=INT_MAX;           //for minimum
+        p.second=INT_MIN;          //for maximum
+        return p;
+    }
+    
+    pair<int,int>leftAns=getMinAndMax(root->left);
+    pair<int,int>rightAns=getMinAndMax(root->right);
+    
+    int lMin=leftAns.first;
+    int lMax=leftAns.second;
+    
+    int rMin=rightAns.first;
+    int rMax=rightAns.second;
+    
+    int minim=min(root->data ,min(lMin,rMin));
+    int maxm=max(root->data,max(lMax,rMax));
+    
+    pair<int,int> p;
+    p.first=minim;
+    p.second=maxm;
+    
+    return p;
+    
+    
+}
