@@ -1,0 +1,34 @@
+vector<int>*getPathFromRoot(binaryTree<int>*root,int x)
+{
+  if(root==NULL)
+  return NULL;
+
+
+  if(root->data==x)
+  {
+    vector<int>*output=new vector<int>();       //dynamically creating so size not mention
+    output->push_back(root->data);
+    return output;
+  }
+
+ vector<int>*leftOutput=getPathFromRoot(root->left,x);
+ if(leftOutput!=NULL)
+ {
+   leftOutput->push_back(root->data);
+   return leftOutput;
+ }
+
+ vector<int>*rightOutput=getPathFromRoot(root->right,x);
+ if(rightOutput!=NULL)
+ {
+   rightOutput->push_back(root->data);
+   return rightOutput;
+ }
+ else
+ return NULL;
+
+
+
+
+
+}
