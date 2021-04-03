@@ -8,7 +8,7 @@ void insertDuplicateNode(BinaryTreeNode<int> *root) {
     }
      insertDuplicateNode(root->left);
 insertDuplicateNode( root->right);
-if(root==NULL)
+if(root->left==NULL)
 {
      BinaryTreeNode<int>* newNode=new BinaryTreeNode<int>(root->data);
      
@@ -16,7 +16,7 @@ if(root==NULL)
     return ;
 }
  
-    if(root!= NULL)
+    if(root->left!= NULL)
     { BinaryTreeNode<int>*newNode=new BinaryTreeNode<int>(root->data);
         temp=root->left;
         root->left=newNode;
@@ -27,4 +27,3 @@ if(root==NULL)
     
     
 }
-
