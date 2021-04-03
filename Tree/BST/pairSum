@@ -1,0 +1,56 @@
+#include<vector>
+#include <bits/stdc++.h>
+
+vector<int> arrayConvertor(BinaryTreeNode<int>* root){
+    queue<BinaryTreeNode<int>*> a;
+    vector<int> output;
+    a.push(root);
+    while(!a.empty()){
+        BinaryTreeNode<int>* front=a.front();
+        a.pop();
+        output.push_back(front->data);
+        if(front->left!=NULL){
+            a.push(front->left);
+        }
+        if(front->right!=NULL){
+            a.push(front->right);
+        }
+    }
+    return output;
+}
+
+
+void pairSum(BinaryTreeNode<int> *root, int sum) {
+       
+   
+    if(root==NULL)
+        return;
+    
+    vector<int> arr=arrayConvertor(root);
+int n=arr.size();
+    sort(arr.begin(),arr.end());
+    
+int i=0, j=arr.size()-1;
+    while(i<j)
+    {
+        if(arr[i]+arr[j]==sum)
+        {
+            cout<<arr[i]<<" "<<arr[j];
+            cout<<endl;
+            i++;
+            j--;
+            
+        }
+        else if(arr[i]+arr[j]<sum)
+        {
+            i++;
+        }
+        else
+        {
+            j--;
+        }
+    }
+ 
+    
+  }
+    
