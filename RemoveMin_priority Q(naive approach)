@@ -1,0 +1,61 @@
+
+    int removeMin() {
+        
+        int ans=pq[0];   //storing the min element to return it
+        pq[0]=pq[pq.size()-1];      //putting the last element to top
+        pq.pop_back();   //removing the last element because it is alread inserted in the top that is the place of min element
+        //now time to compare the elements
+        
+        int parentIndex=0;
+        while(parentIndex<pq.size()-1)
+        {
+            int LeftChildIndex=2*(parentIndex)+1;
+        int RightChildIndex=2*(parentIndex)+2;
+        
+        if(LeftChildIndex<pq.size())
+    {
+      
+        int minElement= min(pq[LeftChildIndex],pq[RightChildIndex]);
+        if(pq[parentIndex]>minElement)
+        {
+        int minIndex;
+        for(int i=0;i<pq.size()-1;i++)
+        {
+            if(pq[i]==minElement)
+                minIndex=i;
+        }
+        int temp=pq[parentIndex];
+        pq[parentIndex]=pq[minIndex];
+        pq[minIndex]=temp;
+            
+            parentIndex=minIndex;
+        
+        }
+        else
+        {   parentIndex=LeftChildIndex;
+            break;
+         
+         
+        }
+    
+        
+            
+    }
+        
+            else
+            {
+                if(pq[parentIndex]>pq[RightChildIndex])
+                {
+                    int temp=pq[parentIndex];
+                    pq[parentIndex]=pq[RightChildIndex];
+                    pq[RightChildIndex]=temp;
+                }
+                else
+                    break;
+                
+                parentIndex=RightChildIndex;
+            }
+            
+        
+    }
+        return ans;}
