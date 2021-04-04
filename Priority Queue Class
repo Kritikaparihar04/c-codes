@@ -1,0 +1,60 @@
+#include<iostream>
+using namespace std;
+#include<vector>
+
+class PriorityQ
+{
+    vector<int>pq;
+    public:
+   PriorityQ()              //constructor
+   {
+
+   }
+
+   bool isEmpty()
+   {
+     return pq.size()==0;
+   }
+
+   int getSize()
+   {
+             //if vector empty than simply return 
+             if(isEmpty())
+                 return;
+
+             return pq.size();
+   }
+
+   int getMin()
+   {
+          return pq[0];               //visualise like tree but store as vector or array
+   }
+
+
+void insert(int element)
+{
+    pq.push_back(element);
+    int childIndex=pq.size()-1;
+    while(childIndex>0)  
+    {          //means till the child node not reach the root
+      
+           int parentIndex=(childIndex-1)/2;
+           if(pq[childIndex]<pq[parentIndex])
+           {
+               // if the child is less than its parent than swap
+               int temp=pq[childIndex];
+               pq[childIndex]=pq[parentIndex];
+               pq[parentIndex]=temp;
+
+           }
+
+           else
+           {              
+              break;                       
+      
+            }
+      childIndex=parentIndex;               //give child its parent position after swaping or not doesnt depend 
+
+    }
+
+};
