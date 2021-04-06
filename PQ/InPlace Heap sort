@@ -1,0 +1,85 @@
+#include<iostream>
+using namespace std;
+void heapSort(int arr[], int n) {
+                                              //1.heap sort inside array
+    for(int i=1;i<n;i++)
+    {
+        int childIndex=i;
+        
+        while(childIndex>0)        //jab tak node correct position m nhi aa jatee
+        {
+            int parentIndex=(childIndex-1)/2;
+            
+            if(arr[childIndex]<arr[parentIndex])
+            {
+                int temp=arr[parentIndex];
+                arr[parentIndex]=arr[childIndex];
+                arr[childIndex]=temp;
+            }
+            else
+            {
+                break;
+            }
+            
+                        childIndex=parentIndex;  
+
+                     //coparinng the node upto the root node or top element
+        }
+        
+    }
+    
+    
+    
+                                 //2.removing the element 
+    
+ int size=n;
+    
+    while(size>1)                 //means atleast 2 element to hone chahie operations perform karne k lie
+    {
+    int temp=arr[0];      //it means that  first element which is smallest is replaced with last element..so sorted im last and rest is unsorted 
+    arr[0]=arr[size-1];
+    arr[size-1]=temp;
+    
+     
+    size--;               //it means the array is small now because last is oresented at correct position
+ 
+    int parentIndex=0;
+    int leftChildIndex=2*parentIndex+1;
+    int rightChildIndex=2*parentIndex+2;
+    
+    
+    
+     
+    while(leftChildIndex<size)      // downHeapify : arranging the top elemetnin correct position
+    {
+        
+         int minIndex=parentIndex;
+        if(arr[minIndex]>arr[leftChildIndex])
+        {
+            minIndex=leftChildIndex;
+        }
+        
+        //checking for the right element
+        
+        if(rightChildIndex<size&&arr[rightChildIndex]<arr[minIndex])
+        {
+            minIndex=rightChildIndex;
+        }
+        
+        if(parentIndex==minIndex)
+        {
+            break;
+    }
+    
+        int temp=arr[minIndex];
+        arr[minIndex]=arr[parentIndex];
+        arr[parentIndex]=temp;
+        
+        parentIndex=minIndex;
+        leftChildIndex=2*parentIndex+1;
+        rightChildIndex=2*parentIndex+2;
+        
+    }
+    }
+       
+}
