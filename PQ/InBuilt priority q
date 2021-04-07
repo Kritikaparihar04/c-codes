@@ -1,0 +1,24 @@
+#include<iostream>
+using namespace std;
+#include<queue>
+
+int main()
+{
+  priority_queue<int>pq;
+  pq.push(10);
+  pq.push(50);
+  pq.push(5);
+  pq.push(15);
+  pq.push(0);
+
+  //by default it is a max priority queue
+
+  cout<<"Size is : "<<pq.size();
+    cout<<"top : "<<pq.top();
+
+  pq.empty();
+  pq.pop();
+  cout<<"after remove Size is : "<<pq.size();
+
+ 
+}
