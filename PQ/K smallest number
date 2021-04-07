@@ -1,0 +1,40 @@
+#include <queue>
+vector<int> kSmallest(int arr[], int n, int k) {
+    
+    priority_queue<int> pq;
+    
+    
+    //push the array in the priority queue
+   
+    for(int i=0; i<k; i++)
+    {
+        pq.push(arr[i]);
+    } 
+    
+    //compare the top element with j element and swap or pop if require
+    
+    
+    
+    for(int i=k; i<n; i++) 
+    {
+        int min = pq.top();
+        if(arr[i] < min)
+        {
+            pq.pop();
+            pq.push(arr[i]);
+               
+        }   
+    } 
+    
+    vector <int> s;
+    for(int i=0;i<k;i++)
+    {
+        int ans = pq.top();
+        s.push_back(ans);
+            pq.pop();
+        
+    }
+    return s;
+    
+    
+}
