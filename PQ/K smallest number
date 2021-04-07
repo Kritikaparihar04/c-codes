@@ -17,8 +17,8 @@ vector<int> kSmallest(int arr[], int n, int k) {
     
     for(int i=k; i<n; i++) 
     {
-        int min = pq.top();
-        if(arr[i] < min)
+        int max = pq.top();
+        if(arr[i] < max)
         {
             pq.pop();
             pq.push(arr[i]);
