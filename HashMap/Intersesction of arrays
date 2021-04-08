@@ -1,0 +1,28 @@
+
+#include<unordered_map>
+
+#include<bits/stdc++.h>
+void intersection(int *arr1, int *arr2, int n, int m) 
+{
+    //insert the first array in hashmap
+    sort(arr1,arr1+n);
+    sort(arr2,arr2+m);
+    unordered_map<int,int>ourmap;
+    for(int i=0;i<n;i++)
+    {
+        ourmap[arr1[i]]++;
+    }
+    
+    //now checking the presence ogf the other array in hashmap
+    for(int i=0;i<m;i++)
+    {
+        if(ourmap[arr2[i]]>0)
+        { cout<<arr2[i]<<" ";
+           ourmap[arr2[i]]--;
+        }
+        else
+            continue;
+    }
+    
+    
+}
