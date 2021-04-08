@@ -1,0 +1,44 @@
+#include<iostream>
+using namespace std;
+#include<string>
+#include<unordered_map>
+#include<bits/stdc++.h>
+int main()
+{
+     unordered_map<string ,int> ourmap;
+     //insert
+     
+     pair<string,int>p("abc",1);
+     ourmap.insert(p);
+
+     ourmap["def"]=2;
+
+ //size 
+   cout<<"size is"<<ourmap.size()<<endl;
+
+   //find 
+   cout<<ourmap["abc"]<<endl;
+   cout<<ourmap.at("def")<<endl;
+
+ //to find the key which is not present
+
+//cout<<ourmap.at("ghi") ;              it will give the error
+
+cout<<"find ghi even it is not present using array "<<ourmap["ghi"]  <<endl;         //this will add the ghi value in map as it is not present earlier and retrun 0, so try not to find using array
+
+//check presence
+if(ourmap.count("ghi")>0)
+cout<<"ghi is present "<<endl;
+
+
+//erase
+
+ourmap.erase("ghi");
+if(ourmap.count("ghi")>0)
+cout<<"ghi is present "<<endl;
+else
+cout<<"ghi is not present";
+
+
+
+}
