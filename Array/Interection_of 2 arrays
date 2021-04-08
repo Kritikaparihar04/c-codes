@@ -1,0 +1,39 @@
+
+#include<unordered_map>
+
+#include<bits/stdc++.h>
+void intersection(int *arr1, int *arr2, int n, int m) 
+{
+    
+    sort(arr1,arr1+n);
+    sort(arr2,arr2+m);
+    
+int i=0,j=0,indexx=0;
+while(i<n&&j<m)
+{
+    if(arr1[i]==arr2[j])
+    {   arr1[indexx]=arr1[i];
+        i++;
+        j++;
+        indexx++;
+        
+    }
+    else if(arr1[i]<arr2[j])
+    {
+        i++;
+    }
+    else if(arr1[i]>arr2[j])
+        j++;
+    
+}
+    
+    for(int i=0;i<indexx;i++)
+        
+    {
+        cout<<arr1[i]<<" ";
+    }
+    
+    
+    
+    
+}
