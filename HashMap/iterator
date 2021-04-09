@@ -1,0 +1,54 @@
+#include<iostream>
+using namespace std;
+#include<vector>
+#include<bits/stdc++.h>
+int main()
+{
+map<string,int>ourmap;
+ourmap["abc1"]=1;
+ourmap["abc2"]=2;
+ourmap["abc3"]=3;
+ourmap["abc4"]=4;
+ourmap["abc5"]=5;
+ourmap["abc6"]=6;
+
+
+//define iterator
+map<string,int>::iterator it=ourmap.begin();
+ while(it!=ourmap.end())
+  {
+    cout<<"Key: "<<it->first /*it->first because hashmap m first key hote hai and second uski value*/<<"  value :"<<it->second<<endl;
+    it++;
+ }
+ 
+//same cheez we can apply on vectoe also
+
+vector<int> v;
+v.push_back(1);
+v.push_back(2);
+v.push_back(3);
+v.push_back(4);
+v.push_back(5); 
+
+vector<int>::iterator it1=v.begin();
+while (it1!=v.end())
+{
+    cout<<*it1;   //pointer to access value
+    it1++;
+}
+
+//find in map
+map<string,int>::iterator it2=ourmap.find("abc3");
+ourmap.erase(it2);
+
+cout<<"After erasing : "<<endl;
+ 
+map<string,int>::iterator it3=ourmap.begin();
+ while(it3!=ourmap.end())
+  {
+    cout<<"Key: "<<it3->first /*it->first because hashmap m first key hote hai and second uski value*/<<"  value :"<<it3->second<<endl;
+    it3++;
+ }
+
+
+}
