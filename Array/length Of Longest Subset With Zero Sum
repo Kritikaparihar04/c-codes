@@ -1,0 +1,20 @@
+#include<bits/stdc++.h>
+using namespace std;
+int lengthOfLongestSubsetWithZeroSum(int* arr, int size){
+  int max_len=0;
+  // Write your code here
+    for(int i=0;i<size;i++){
+        //initialise currsum every time
+        int cur_sum=0;
+        for(int j=i;j<size;j++){
+            cur_sum+=arr[j];
+            if(cur_sum==0){
+                max_len=max(max_len,j-(i-1));
+            }
+        }
+    }
+    return max_len;
+
+}
+
+
