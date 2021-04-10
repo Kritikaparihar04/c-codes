@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+int fact(int num){
+    if(num==1||num==0){
+        return 1;
+    }
+    return num*fact(num-1);
+}
+int getPairsWithDifferenceK(int *arr, int n, int k) {
+
+//sort(arr,arr+n);          //sort the array
+unordered_map<int,int>ourmap;
+
+    for(int i=0;i<n;i++)//insert in the hashmap
+    {
+        ourmap[arr[i]]++;
+    }
+
+    int count=0;
+    if(k==0){
+        for(int i=0;i<n;i++){
+            if(ourmap[arr[i]]!=0&&ourmap[arr[i]]!=1){
+                count+=fact(ourmap[arr[i]]-1);
+            }
+                ourmap[arr[i]]=0;
+        }
+        return count;
+    } 
+    for(int i=0;i<n;i++)
+    {	if(ourmap.count(arr[i])>0){
+            int rem1=arr[i]-k;
+            int rem2=arr[i]+k;
+            int a=ourmap[rem1];
+            int b=ourmap[rem2];
+            int c=a+b;
+            count+=c*ourmap[arr[i]];
+            ourmap.erase(arr[i]);
+        }
+    }
+    
+    return count;
+
+
+}
+
