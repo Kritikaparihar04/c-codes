@@ -1,0 +1,151 @@
+#include<iostream>
+using namespace std;
+class TrieNode{
+public:
+char data;
+TrieNode **children;
+bool IsTerminal;
+
+TrieNode(char data){
+    this->data=data;
+    children=new TrieNode*[26];
+    for(int i=0;i<26;i++) //because 26 alphabets
+    {
+        children[i]=NULL;
+    }
+    IsTerminal=false;
+
+
+}
+
+};
+
+
+class Trie{
+TrieNode *root;
+public:
+
+void InsertWord(TrieNode*root,string word)
+{
+ 
+//base case
+if(word.size()==0)
+{
+    root->IsTerminal=true;   //word can end here
+    return;
+
+}
+
+TrieNode *child;
+//small calculation
+
+int index=word[0]-'a';
+if(root->children[index]!=NULL)
+{
+    child=root->children[index];      //it will move to the next child to check if it is present 
+}
+else //we have to create a new  child
+{
+    child=new TrieNode(word[0]);
+    root->children[index]=child;          //inserting a new  child
+}
+
+
+//recursion call
+
+InsertWord(child,word.substr(1));
+
+}
+
+
+//for user
+void InsertWord(string word)           //because user do not know about the root thats why we are creating this helper function for user
+{
+    InsertWord(root,word);
+}
+
+
+
+//remove 
+void remove(TrieNode *root,string word)
+{
+ //base case
+ if (word.size()==0)
+  {
+      root->IsTerminal=false;
+      return;
+  }
+ 
+
+ //small calculation
+
+int index=word[0]-'a';
+TrieNode *child;
+
+if(root->children[index]!=NULL)
+{
+    //move aage when word found
+    child=root->children[index];
+    } 
+else
+return ;  //word not found
+
+remove(child,word.substr(1));
+
+//remove child from trie if it is useless
+
+if(child->IsTerminal==false)
+{
+   for(int i=0;i<26;i++)
+   {
+       if(child->children[i]!=NULL)
+       {
+           return;   //means that ki child m kuch words ka address pada hai
+       }
+       
+   }
+  delete child;
+  root->children[index]=NULL;
+}
+}
+
+//for user
+void remove(string word)
+{
+    remove(root,word);
+}
+
+ //for us
+    bool search(TrieNode *root,string word)
+    {
+            if (root==NULL)
+            return false;
+        
+        //base case
+        if(word.size()==0)
+        {
+            if(root->isTerminal==true)
+             return true;
+           else
+               return false;
+            
+              
+        } 
+          int index = word[0] - 'a';
+        
+        //recursion
+      int ans=  search(root->children[index],word.substr(1));
+    if(ans)
+        return true;
+        
+        return false;
+    
+    }
+    
+    //for user
+    bool search(string word) {
+
+      return   search(root,word);
+
+    }
+};
