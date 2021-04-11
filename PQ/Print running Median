@@ -1,0 +1,98 @@
+
+
+#include<queue>
+#include<bits/stdc++.h>
+
+
+void printRunningMedian(int *arr, int n) {
+    
+    priority_queue<int>pq;   //max heap
+    priority_queue<int,vector<int>,greater<int>>min_pq;  //min heap
+    
+ 
+    for(int i=0;i<n;i++)
+    {   if(pq.size()==0)  //for the first element
+        {
+         pq.push(arr[i]);
+       //  cout<<pq.top()<<" ";
+        }
+       else if(arr[i]<pq.top())
+        {
+            pq.push(arr[i]);
+        }
+        else
+        {
+            min_pq.push(arr[i]);
+        }
+        
+        
+        if(pq.size()>min_pq.size()&&(i+1)%2==0)
+        {
+            int front=pq.top();
+            pq.pop();
+            min_pq.push(front);
+            
+            int m=(min_pq.top()+pq.top())/2;
+            cout<<m<<" ";
+        }
+        else if(pq.size()<min_pq.size()&&(i+1)%2==0)      //we are checking the balancing
+        {
+            int front=min_pq.top();
+            min_pq.pop();
+            pq.push(front);
+            
+            int m=(pq.top()+min_pq.top())/2;
+            cout<<m<<" ";
+        }
+        else if(pq.size()==min_pq.size())
+        {
+            int m=(pq.top()+min_pq.top())/2;
+             cout<<m<<" ";
+        
+        }
+        
+        if(pq.size()>min_pq.size()&&(i+1)%2!=0)
+        {
+            cout<<pq.top()<<" ";
+        }
+        else if(pq.size()<min_pq.size()&&(i+1)%2!=0)
+        {
+            cout<<min_pq.top()<<" ";
+        }
+            
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+}
+
+
+
+
+
+
+
+
+#include <iostream>
+using namespace std;
+ 
+
+int main() {
+    int n;
+    cin >> n;
+
+    int* arr = new int[n];
+
+    for (int i = 0; i < n; ++i) {
+        cin >> arr[i];
+    }
+
+    printRunningMedian(arr, n);
+
+    delete[] arr;
+}
