@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+int balancedBTs(int n) {
+    
+    //array of size n+1
+    int *arr=new int[n+1];
+    
+    //base case
+    arr[0]=1;
+    arr[1]=1;
+    
+    int mod=(int)(pow(10,9)+7);
+    
+    int ans=0;
+    for(int i=2;i<=n;i++)
+    {
+        //calculation
+        ans=(int)(((2*(long)arr[i-1]*arr[i-2])%mod+((long)arr[i-1]*arr[i-1])%mod)%mod);
+        
+        //storing for the future use
+        arr[i]=ans;
+    }
+    
+    return arr[n];
+}
