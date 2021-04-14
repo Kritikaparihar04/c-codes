@@ -1,0 +1,36 @@
+#include<iostream>
+using namespace std;
+#include<bits/stdc++.h>
+
+#include<bits/stdc++.h>
+
+int minCount(int n)
+{        
+    //base case
+    if(sqrt(n)-floor(sqrt(n))==0)
+        return 1;
+    
+      int *arr=new int[n+1];
+    
+    
+    arr[0]=0;
+    arr[1]=1;
+    arr[2]=2;
+    arr[3]=3;
+    for(int i=4;i<=n;i++)
+    {
+ int small=INT_MAX;
+      int j=1;
+      while(j*j<=i)
+      { 
+          small=min(small,1+arr[i-j*j]);
+           j++;
+      }   
+        arr[i]=small;
+    }
+    return arr[n];
+}
+int main()
+{
+  cout<<minCount(30);
+}
