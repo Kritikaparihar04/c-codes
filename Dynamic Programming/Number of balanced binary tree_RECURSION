@@ -1,14 +1,24 @@
-int countBST(int h)
-{
+#include<bits/stdc++.h>
 
-if(h==0||h==1)
-return 1;
-
-//as there are only three possible combinations
-
-return countBST(h-1)*(2*countBST(h-2)+countBST(h-1)); 
-
-
-
-
+int balancedBTs(int n) {
+    
+    //base case
+    
+    if(n==1||n==0)
+        return 1;
+    
+    int x=balancedBTs(n-1) ;
+    int y=balancedBTs(n-2);
+    
+    int mod=(int)(pow(10,9))+7;  //it will help to put the calculation within the range of integer
+    
+    int temp1=(int)(((long)(x)*x)%mod);
+    int temp2=(int)((2*(long)(x)*y)%mod);
+  //typecasting to integer
+    int ans=(temp2+temp1)%mod	;
+    
+    return ans;
+    
+ 
+    
 }
