@@ -1,0 +1,32 @@
+#include<iostream>
+using namespace std;
+#include<bits/stdc++.h>
+int getMinCount(int n)
+{
+    //base case
+    if(sqrt(n)-floor(sqrt(n))==0)
+    return 1;                               //if it is a perfect square then only 1 step is required
+
+   if(n<=3)
+   return n;                //because 2 square start from 4
+
+  
+  int res=n;
+for(int i=1;i<=n;i++)
+{
+    int temp=i*i;
+    if(temp>n)
+    break;
+   else
+   {
+       res=min(res,(1+getMinCount(n-temp)));
+   }
+
+}
+   return res;
+}
+
+int main()
+{
+  cout<<getMinCount(17);
+}
