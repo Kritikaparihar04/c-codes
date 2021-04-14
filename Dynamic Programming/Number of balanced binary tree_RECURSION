@@ -1,0 +1,14 @@
+int countBST(int h)
+{
+
+if(h==0||h==1)
+return 1;
+
+//as there are only three possible combinations
+
+return countBST(h-1)*(2*countBST(h-2)+countBST(h-1)); 
+
+
+
+
+}
