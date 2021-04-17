@@ -1,0 +1,74 @@
+#include<bits/stdc++.h>
+
+
+int helper(int **input,int m ,int n,int i,int j,int **output)
+{
+    
+
+    
+//base case
+    
+    if(i==m-1&&j==n-1)
+    {
+        
+        //we need to return the value of that cell
+    
+        return input[i][j];
+        
+    }
+    
+    //if out of range value aa jae
+    
+    if(i>m-1||j>n-1)
+    {
+        //like we have to find the minimum of the values than put the infinityy value to them 
+        return INT_MAX;
+    }
+    
+    
+//check condition
+    if(output[i][j]!=-1)
+    {
+        return output[i][j];
+    }
+    
+    //now we have to see the three sides that is left right and diagonal
+    int x=helper(input,m,n,i+1,j,output);   //for the down
+    int y=helper(input,m,n,i,j+1,output);   //for the right 
+    int z=helper(input,m,n,i+1,j+1,output);  //for the diagonal
+    
+    
+    
+//recursion
+    
+    int ans=input[i][j]+min(x,min(y,z));
+    output[i][j]=ans;  
+    
+    return ans;
+}
+
+
+
+
+int minCostPath(int **input, int m, int n)
+{ 
+    
+    int  **output=new int*[m];
+    
+    for(int i=0;i<m;i++)
+    {
+        output[i]=new int[n];
+    }
+    
+    for(int i=0;i<m;i++)
+    {
+       for(int j=0;j<n;j++)
+       {
+          output[i][j]=-1;
+       }
+    }
+     return helper(input,m,n,0,0,output);
+    
+    
+    
+}
