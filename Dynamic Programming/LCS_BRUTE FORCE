@@ -1,0 +1,31 @@
+#include<iostream>
+using namespace std;
+
+int LCS(string s,string t)
+{
+    //base case
+    if(s.size()==0||t.size()==0)
+    return 0;
+   
+    if(s[0]==t[0])
+    return 1+LCS(s.substr(1),t.substr(1));
+
+    //recursive calls
+    int x=LCS(s.substr(1),t);
+    int y=LCS(s.substr(1),t.substr(1));
+    int z=LCS(s,t.substr(1));
+
+ int ans=max(x,max(y,z));
+
+ return ans;
+
+}
+
+
+int main()
+{
+    string s="abcfd";
+    string t="zfadgdbcfd";
+
+    cout<<LCS(s,t);
+}
