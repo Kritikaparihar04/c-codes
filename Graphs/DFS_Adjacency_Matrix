@@ -1,7 +1,7 @@
-#include<iostream>
+ #include<iostream>
 using namespace std;
 
-void print(int n, int**matrix,bool *visited,int strt_vrtx)
+void print_DFS(int n, int**matrix,bool *visited,int strt_vrtx)
 {
 
 cout<<strt_vrtx<<endl;
@@ -18,8 +18,24 @@ for(int i=0;i<n;i++)
          continue;                   //if vo node likh chuke h hum then we will just simply move to next i and not calling the print function for that node 
      
 
-     print(n,matrix,visited,i);
+     print_DFS(n,matrix,visited,i);
 }
+}
+}
+
+void print_DFS(int **adj,int V)
+{
+
+    bool *visited=new bool[V];
+    for(int i=0;i<V;i++)
+{
+    visited[i]=false;       
+}
+
+ for(int i=0;i<V;i++)
+ {                                    //TAKE CARE OF DISCONNECTED GRAPH
+         if(visited[i]==false)
+    print_DFS(V ,adj,visited,i); 
 }
 }
 int main()
@@ -48,19 +64,11 @@ for(int i=0;i<e;i++)
  matrix[sv][fv]=1;
 
 }
+ print_DFS( matrix,n);
 
- //to keep the track of the visited nodes so that we dont print them again and again
+  //initially stsarting index 0
 
+delete[] matrix;
 
-    bool *visited=new bool[n];
-    for(int i=0;i<n;i++)
-{
-    visited[i]=false;       
-}
-//we can print the graph
-print(n, matrix,visited,0);      //initially stsarting index 0
-
-delete matrix;
-delete visited;
 
 }
