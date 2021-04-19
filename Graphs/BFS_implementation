@@ -1,0 +1,115 @@
+#include <iostream>
+using namespace std;
+#include<bits/stdc++.h>
+
+void  print_BFS(int V,int**adj,  int currentVertex,bool*visited)             //helps in printing
+{
+    if(V==0)
+        return;
+    
+     
+ 
+    //to update the adjacency matri to store the record og edges
+    
+    
+    
+    queue<int>q;
+    q.push(currentVertex);
+    visited[currentVertex]=true;        //if pushed one time than no need to push again
+    
+    while(!q.empty())
+    {
+        int currentVertex=q.front(); //it will remove from the q also and will be save in the current Inddex also
+        cout<<currentVertex<<" ";
+        q.pop();
+        //now push the adjacent vertex of the node
+        
+        for(int i=0;i<V;i++)
+        {
+            if(i==currentVertex)
+                continue;
+            if(adj[currentVertex][i]==1&& !visited[i])
+               {
+                   q.push(i);
+                   visited[i]=true;
+               }
+        }
+     }   
+    
+    
+    for(int i=0;i<V;i++)
+    {
+        if(visited[i]==false)                                   
+        {
+             print_BFS(V,adj, i,visited);
+        }
+    }
+}
+
+void BFS_print(int V,int **adj)                     //this will help for disconnected graph by looking in  the visited array 
+{   bool*visited=new bool[V];
+    
+    for(int i=0;i<V;i++)
+    {
+        visited[i]=false;
+    }
+ 
+ 
+ for(int i=0;i<V;i++)
+ {
+     if(visited[i]==false)
+         print_BFS(V,adj, i,visited);
+ }
+    
+}
+
+
+int main() {
+
+    int V,E;
+    cin>>V>>E;
+    
+    //first we will create an adjacency matrix
+    int **adj=new int*[V];
+    
+    for(int i=0;i<V;i++)
+    {
+        adj[i]=new int[V];
+        
+        for(int j=0;j<V;j++)
+        {
+            adj[i][j]=0; 
+        }
+    }
+    
+    
+    //visited array to save the nodes already visited
+    
+   
+    
+    for(int i=0;i<E;i++)
+    {
+        int fv,sv;
+        cin>>fv>>sv;
+        
+        adj[sv][fv]=1;
+        adj[fv][sv]=1;
+        
+        
+    }
+    
+    if(E==0&&V!=0)
+        
+    {
+      for(int i=0;i<V;i++)
+      {
+          cout<<i<<" ";
+      }
+    }
+    else
+    {
+    BFS_print(V,adj);
+    }    
+    }
+    
+    
