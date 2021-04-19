@@ -1,0 +1,66 @@
+#include<iostream>
+using namespace std;
+
+void print(int n, int**matrix,bool *visited,int strt_vrtx)
+{
+
+cout<<strt_vrtx<<endl;
+visited[strt_vrtx]=true;      //after printing updater its status in visited array otherwise it fill form an infinite loop
+
+for(int i=0;i<n;i++)
+{
+     if(i==strt_vrtx)
+     continue;
+
+     if(matrix[strt_vrtx][i]==1)        //if edge is existing then we are calling the print function on that nodes
+     {
+         if(visited[i])
+         continue;                   //if vo node likh chuke h hum then we will just simply move to next i and not calling the print function for that node 
+     
+
+     print(n,matrix,visited,i);
+}
+}
+}
+int main()
+{
+    int n,e;
+    cout<<"enter the number of vertices , edges";
+    cin>>n>>e;
+
+
+//for adjacency matrix
+int **matrix=new int*[n];
+for(int i=0;i<n;i++)
+{
+    matrix[i]=new int[n];
+    for(int j=0;j<n;j++)
+    {
+        matrix[i][j]=0;
+    }
+}
+
+//setting the matrix for account of edges
+for(int i=0;i<e;i++)                     
+{  int fv,sv;                  //edge will lie between first vertex and second vertex 
+    cin>>fv>>sv;
+ matrix[fv][sv]=1;
+ matrix[sv][fv]=1;
+
+}
+
+ //to keep the track of the visited nodes so that we dont print them again and again
+
+
+    bool *visited=new bool[n];
+    for(int i=0;i<n;i++)
+{
+    visited[i]=false;       
+}
+//we can print the graph
+print(n, matrix,visited,0);      //initially stsarting index 0
+
+delete matrix;
+delete visited;
+
+}
