@@ -1,0 +1,86 @@
+#include <iostream>
+using namespace std;
+#include<bits/stdc++.h>
+
+bool hasPath(int **adj,int V,int v1,int v2,bool*visited)
+{
+    //base case
+    if(adj[v1][v2]==1)
+        return true;
+    
+    queue<int>q;
+    q.push(0);
+    visited[0]=true;
+    while(!q.empty())
+    {
+    int a=q.front();
+        q.pop();
+    
+    for(int i=0;i<V;i++)
+    {
+        if(i==a)
+        continue;
+        
+        if(adj[a][i]==1&&!visited[i])
+        {
+            q.push(i);
+            visited[i]=true;
+        }
+    }
+    }
+    
+    if(visited[v1]==true &&visited[v2]==true)
+        return true;
+    else
+        return false;
+    
+    
+    
+}
+
+
+
+
+
+int main() {
+    
+    int V,E;
+    cin>>V>>E;
+    
+    int **adj=new int*[V];
+    for(int i=0;i<V;i++)
+    {
+        
+        adj[i]=new int[V];
+        for(int j=0;j<V;j++)
+        {
+            adj[i][j]=0;
+        }
+    }
+    
+    
+    //for edges
+    
+    for(int i=0;i<E;i++)
+    {
+        int fv,sv;
+        cin>>fv>>sv;
+        
+        adj[fv][sv]=1;
+        adj[sv][fv]=1;
+    }
+     int v1,v2;
+    cin>>v1>>v2;
+    bool *visited=new bool[V];
+    for(int i=0;i<V;i++)
+    {
+        visited[i]=false;
+    }
+    
+    
+   
+ bool ans=hasPath(adj,V,v1,v2,visited);
+if(ans==0)
+    cout<<"false";
+    else cout<<"true";
+} 
