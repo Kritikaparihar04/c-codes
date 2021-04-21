@@ -1,0 +1,114 @@
+#include <iostream>
+using namespace std;
+#include<bits/stdc++.h>
+
+vector<int>print_BFS(int V,int**adj,  int currentVertex,bool*visited)
+{ 
+    
+     
+ 
+    //to update the adjacency matri to store the record og edges
+    
+    vector<int>vec;
+    
+    queue<int>q;
+    q.push(currentVertex);
+    visited[currentVertex]=true;        //if pushed one time than no need to push again
+    
+    while(!q.empty())
+    {
+        int currentVertex=q.front(); //it will remove from the q also and will be save in the current Inddex also
+        /*cout<<currentVertex<<" ";*/
+        vec.push_back(currentVertex);
+        q.pop();
+        //now push the adjacent vertex of the node
+        
+        for(int i=0;i<V;i++)
+        {
+            if(i==currentVertex)
+                continue;
+            if(adj[currentVertex][i]==1&& !visited[i])
+               {
+                   q.push(i);
+                   visited[i]=true;
+               }
+        }
+     }
+    
+    return vec;
+    
+   
+}
+
+void BFS_print(int V,int **adj)
+{   bool*visited=new bool[V];
+    
+    for(int i=0;i<V;i++)
+    {
+        visited[i]=false;
+    }
+ 
+ 
+ for(int i=0;i<V;i++)
+ {
+     if(visited[i]==false)
+     {
+         vector<int>l=print_BFS(V,adj, i,visited);
+          priority_queue<int,vector<int>,greater<int>>pq;
+           for(int i=0;i<l.size();i++)
+           {
+               pq.push(l[i]);
+               
+           }
+         
+         while(!pq.empty())
+         {
+             cout<<pq.top()<<" ";
+             pq.pop();
+         }
+ cout<<endl;
+     }
+    
+}
+
+}
+int main() {
+
+    int V,E;
+    cin>>V>>E;
+    
+    //first we will create an adjacency matrix
+    int **adj=new int*[V];
+    
+    for(int i=0;i<V;i++)
+    {
+        adj[i]=new int[V];
+        
+        for(int j=0;j<V;j++)
+        {
+            adj[i][j]=0; 
+        }
+    }
+    
+    
+    //visited array to save the nodes already visited
+    
+   
+    
+    for(int i=0;i<E;i++)
+    {
+        int fv,sv;
+        cin>>fv>>sv;
+        
+        adj[sv][fv]=1;
+        adj[fv][sv]=1;
+        
+        
+    }
+ 
+    BFS_print(V,adj);
+    
+    
+    }
+    
+    
