@@ -1,0 +1,39 @@
+
+#include<bits/stdc++.h>
+bool helper(char input[],int s,int l)
+{
+
+  if(s>=l)                      //jaise he start badaa ya equal to hoga last se vaise he return true krdo it means us time tak palindrome ki saree conditions poore hue h
+     return true;   
+if(input[s]!=input[l])
+    return false;
+ 
+  helper(input,s+1,l-1);
+     
+}
+
+
+bool checkPalindrome(char input[]) {
+   int l=strlen(input) ;
+    
+return helper(input,0,l-1);
+    
+    
+    }
+
+
+#include <iostream>
+#include "solution.h"
+using namespace std;
+
+int main() {
+    char input[50];
+    cin >> input;
+    
+    if(checkPalindrome(input)) {
+        cout << "true" << endl;
+    }
+    else {
+        cout << "false" << endl;
+    }
+}
