@@ -1,0 +1,60 @@
+
+void helper(int input[], int size, int x, int output[],int &count,int currentIndex)
+{
+//helper function is created just to fill the output array
+    if(size==currentIndex)
+     return;
+    
+if(input[currentIndex]==x)
+{
+    output[count]=currentIndex;
+    count++;
+}
+
+    helper(input,size,x,output,count,currentIndex+1);
+    
+}
+
+
+int allIndexes(int input[], int size, int x, int output[]) {
+ 
+    int count=0;
+ helper(input,size,x,output,count,0);
+    return count;
+}
+
+
+#include<iostream>
+#include "Solution.h"
+using namespace std;
+
+
+int main(){
+    int n;
+    cin >> n;
+  
+    int *input = new int[n];
+    
+    for(int i = 0; i < n; i++) {
+        cin >> input[i];
+    }
+    
+    int x;
+    
+    cin >> x;
+    
+    int *output = new int[n];
+    
+    int size = allIndexes(input, n, x, output);
+    for(int i = 0; i < size; i++) {
+        cout << output[i] << " ";
+    }
+    
+    delete [] input;
+    
+    delete [] output;
+    
+
+}
+
+
