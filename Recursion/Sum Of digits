@@ -1,0 +1,22 @@
+int sumOfDigits(int n) {
+ //base case
+    if(n==0)
+        return 0;
+    
+ //small calculation and recursion
+    int ans=n%10+sumOfDigits(n/10);
+    
+    return ans;
+    
+}
+
+
+#include <iostream>
+#include "solution.h"
+using namespace std;
+
+int main() {
+   int n;
+   cin >> n;
+   cout << sumOfDigits(n) << endl;
+}
