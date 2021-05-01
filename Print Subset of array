@@ -1,0 +1,55 @@
+
+void helper(int input[],int size,int output[],int osize,int startingIndex)
+{
+    if(startingIndex==size)     //printing phle
+    {
+        for(int i=0;i<osize;i++)
+        {
+            cout<<output[i]<<" ";
+        }
+     cout<<endl;
+        
+        
+        return ;
+        
+    }
+    
+    //by not taking element
+    int smallOutput[30];    
+    helper(input,size,output,osize,startingIndex+1);
+    int i;
+    for( i=0;i<osize;i++)
+    {
+        smallOutput[i]=output[i];
+    }
+    smallOutput[i]=input[startingIndex];
+    helper(input,size,smallOutput,osize+1,startingIndex+1);
+    
+    
+    
+    
+    
+}
+
+
+
+void printSubsetsOfArray(int input[], int size) {
+	// Write your code here
+    int output[30];
+   return  helper(input,size,output,0,0);
+    
+}
+
+
+
+#include <iostream>
+using namespace std;
+#include "solution.h"
+
+int main() {
+  int input[1000],length;
+  cin >> length;
+  for(int i=0; i < length; i++)
+  	cin >> input[i];
+  printSubsetsOfArray(input, length);
+}
