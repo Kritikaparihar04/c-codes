@@ -1,0 +1,50 @@
+ 
+#include<iostream>
+using namespace std;
+
+int helper(int input[],int n,int output[][20],int startingIndex)
+{
+    if(startingIndex==n)
+    { output[0][0]=0;
+       return 1;
+    }
+    
+    int smallArr=helper(input,n,output,startingIndex+1);
+    
+    for(int i=0;i<smallArr;i++)
+    {
+        output[i+smallArr][0]=output[i][0]+1;                              //first index of final output contains the size of their respective row
+        output[i+smallArr][1]=input[startingIndex];                        //appending the first input of the input array to the output
+        
+        for(int j=1;j<=output[i][0];j++)
+        {                                                                 //copy the elements from the small output to the main output
+            output[i+smallArr][j+1]=output[i][j];
+        }
+    }
+    return 2*smallArr;
+}
+
+
+int subset(int input[], int n, int output[][20]) {
+    // Write your code here
+    
+    return helper(input,n,output,0);
+  
+    
+
+}
+int main()
+{
+    int input[]={1,2,3};
+    int output[20][20];
+int x= subset(input,3,output);
+
+for(int i=0;i<x;i++)
+{
+    for(int j=1;j<=output[i][0];j++)                            //we are not including the first column as it contains the size
+    {
+        cout<<output[i][j]<<" ";
+    }
+    cout<<endl;
+}
+}
