@@ -4,6 +4,9 @@ using namespace std;
 
 int main()
 {
+
+
+
    cout << "BITWISE OPERATOR" << endl; 
    int ror=15|30;
    int r_and=15&30;
