@@ -3,7 +3,8 @@ using namespace std;
 class stud{
 
  
-   public: 
+   public:
+   
     //declaring static variable
       static int totals;
   
