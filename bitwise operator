@@ -12,6 +12,7 @@ int main()
    int rrs=15>>2;
    int rls=15<<2;
    cout<<ror<<endl;
+   
    cout<<r_and<<endl;
    cout<<rnot<<endl;
    cout<<rxor<<endl;
