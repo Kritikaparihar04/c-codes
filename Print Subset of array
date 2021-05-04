@@ -4,6 +4,8 @@ void helper(int input[],int size,int output[],int osize,int startingIndex)
     if(startingIndex==size)     //printing phle
     {
         for(int i=0;i<osize;i++)
+	
+	
         {
             cout<<output[i]<<" ";
         }
