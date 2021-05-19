@@ -7,6 +7,7 @@
 void printRunningMedian(int *arr, int n) {
     
     priority_queue<int>pq;   //max heap
+    
     priority_queue<int,vector<int>,greater<int>>min_pq;  //min heap
     
  
