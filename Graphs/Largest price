@@ -1,0 +1,146 @@
+
+#include<climits>
+int arr[][2] = {{0 , -1} , {1 , 0} , {-1 , 0} , {0 , 1}};
+
+int st = 1;
+
+void helper(vector<vector<int>> &cake ,  int n , int i , int j , bool ** visited){
+if(visited[i][j] == true){
+    return;
+}
+    if(i < 0 || j < 0 || i >= n || j >= n || visited[i][j] == true || cake[i][j]!= 1){
+        return;
+    }
+    
+    visited[i][j] = true;
+    
+    for(int k = 0 ; k < 4 ; k++){
+           
+        int a = i + arr[k][0];
+        int b =  j + arr[k][1] ;
+        
+        if(a >= 0 && b >= 0 && a < n && b < n && cake[a][b] == 1 &&  visited[a][b] == false){
+        st++;
+         helper(cake ,  n ,  a,b, visited);
+        }
+ 
+    }
+
+  
+    return ;
+}
+int getBiggestPieceSize(vector<vector<int>> &cake, int n) {
+    
+    bool**visited = new bool*[n];
+    
+    for(int i = 0 ; i < n ; i++){
+        
+        visited[i] = new bool[n];
+        
+        for(int j = 0 ; j < n ; j++){
+            
+            visited[i][j] = false;
+        }
+    }
+     int m = 0;
+    for(int i = 0 ; i < n ; i++){
+        
+        for(int j = 0 ; j < n ; j++){
+            
+            if(cake[i][j] == 1 && !visited[i][j]){
+                
+                
+                  helper(cake ,  n , i  , j  , visited);
+                    m = max(m , st);
+                    st = 1;
+            }
+        }
+    }
+    return m;
+}
+
+/* int count_p(vector<vector<int>> &cake, int n,bool**visited,int r,int c)
+ {
+     if(r>n-1||c>n-1||r<0||c<0)
+         return 0;
+     
+     
+     int summ=0,count=0;
+      if(cake[r][c]==1& !visited[r][c])
+      {
+          count++;
+          visited[r][c]=true;
+      }
+     
+ 
+     
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        { if(visited[i][j])
+            continue;
+            
+            if(cake[i][j]==1&& !visited[i][j])
+            {   
+                visited[i][j]=true;
+                int a=count_p(cake,n,visited, i-1,j);
+                int b=count_p(cake,n,visited, i,j+1);
+                int c=count_p(cake,n,visited, i+1,j);
+                int d=count_p(cake,n,visited, i,j-1);
+            count=1+a+b+c+d;
+            }
+            
+            
+           }
+      
+       
+    }
+        if(count>summ)
+                summ=count;
+        
+     return summ;
+ }
+
+int getBiggestPieceSize(vector<vector<int>> &cake, int n) {
+    
+
+    bool**visited=new bool*[n];
+    for(int i=0;i<n;i++)
+    {
+        visited[i]=new bool[n];
+        for(int j=0;j<n;j++)
+        {
+            visited[i][j]=false;
+        }
+    }
+    
+    
+    int count=count_p(cake,n,visited, 0,0);
+    
+    
+    
+    return count;
+}*/
+
+
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+ 
+
+int main() {
+    int n;
+    cin >> n;
+
+    vector<vector<int>> cake(n, vector<int>(n));
+
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            cin >> cake[i][j];
+        }
+    }
+
+    cout << getBiggestPieceSize(cake, n);
+}
