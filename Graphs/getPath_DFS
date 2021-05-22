@@ -1,0 +1,83 @@
+#include <iostream>
+using namespace std;
+
+#include<bits/stdc++.h>
+
+void getPath_DFS(int **adj, int V, bool *visited,int startingV,int endingV, vector<int>vect)
+{
+   if(visited[startingV]==false)
+   { vect.push_back(startingV);
+       visited[startingV]=true;
+    //base case
+    if(startingV==endingV)//if we have come to the end of the list then print the path
+    {
+        for(int i=vect.size()-1;i>=0;i--)
+        {
+            cout<<vect[i]<<" ";
+        }
+       return;
+    }
+   }
+    //if the starting vertex is not visited
+    
+        
+        for(int i=0;i<V;i++)
+        {
+            
+            if(startingV==i)
+                continue;
+            
+            if(adj[startingV][i]==1 && !visited[i])
+            { 
+             getPath_DFS(adj, V,visited,i, endingV,vect);
+
+        }
+    }
+    
+    
+}
+
+
+
+
+int main() 
+{
+
+int V,E;
+cin>>V>>E;
+    
+int **adj=new int *[V];
+    for(int i=0;i<V;i++)
+    {
+        adj[i]=new int[V];
+        for(int j=0;j<V;j++)
+    
+        {
+
+        adj[i][j]=0;
+        }
+    }
+
+
+    bool *visited=new bool[V];
+    for(int i=0;i<V;i++)
+    {
+        visited[i]=false;
+    }
+    
+    for(int i=0;i<E;i++)
+    {
+        int fv,sv;
+        cin>>fv>>sv;
+        
+        adj[fv][sv]=1;
+        adj[sv][fv]=1;
+        
+    }
+int startingV,endingV;    
+    cin>>startingV>>endingV;
+    
+     vector<int>vect;
+    getPath_DFS(adj,V,visited,startingV,endingV,vect);
+
+}
