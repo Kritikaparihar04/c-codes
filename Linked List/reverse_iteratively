@@ -1,0 +1,25 @@
+Node *reverseLinkedList(Node *head) {
+    // Write your code here
+    
+    if(head==NULL||head->next==NULL)
+        return head;
+    
+    Node*current=head;
+    Node*prev=NULL;
+    Node*fwd=NULL;
+    
+    while(current!=NULL)
+    {   fwd=current->next;
+        current->next=prev;
+     
+     //updating
+     
+     prev=current;
+     current=fwd;
+     
+     //forwrd to phlee hee update ho chukaa h
+       
+    }
+    
+    return prev;
+}
