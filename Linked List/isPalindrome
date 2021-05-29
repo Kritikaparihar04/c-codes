@@ -1,0 +1,25 @@
+bool isPalindrome(Node *head)
+{
+    //Write your code here
+    if(head==NULL||head->next==NULL)
+        return true;
+    
+    Node *last=head;
+   while(last->next ->next!=NULL &&head->next!=NULL)
+   {
+       last=last->next;
+       
+   }
+    
+   Node* end=last;
+    end=last->next;
+    if(head->data!=end->data)
+        return false;
+    else
+    {
+        last->next =NULL;
+        isPalindrome(head->next);
+    }
+    
+    
+}
