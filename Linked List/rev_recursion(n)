@@ -1,0 +1,25 @@
+
+Node *reverseLinkedListRec(Node *head)
+{
+    //base case
+    
+    if(head==NULL||head->next==NULL)
+        return head;
+
+     // call recursion
+    
+    Node *smallCalculation=reverseLinkedListRec(head->next);  //and we assume rest of the list is in reversed order
+    
+    Node *temp=smallCalculation; //to store the reversed sorted list
+    
+       
+        Node*tail=head->next;
+        tail->next=head;  //attaching the head node to the last element of the reversed list
+        head->next=NULL;  //pointing the next of earlier head node to the null 
+    
+    return smallCalculation;  //returning the reversed list
+    
+    
+    
+    
+}
