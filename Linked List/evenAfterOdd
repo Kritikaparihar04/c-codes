@@ -1,0 +1,83 @@
+/****************************************************************
+ 
+    Following is the class structure of the Node class:
+
+        class Node
+        {
+        public:
+	        int data;
+	        Node *next;
+	        Node(int data)
+	        {
+		        this->data = data;
+		        this->next = NULL;
+	        }
+        };
+
+*****************************************************************/
+
+Node *evenAfterOdd(Node *head)
+{
+ Node*ehead=NULL;
+ Node*etail=NULL;
+ Node*ohead=NULL;
+ Node*otail=NULL;
+    
+    
+while(head!=NULL)
+{
+    if(head->data%2==0)
+    {
+      if(ehead==NULL)
+      {
+        ehead=head;
+          etail=head;
+      }
+        else
+        {
+            etail->next=head;
+            etail=etail->next;
+        }
+    }
+    else
+    {
+        if(ohead==NULL)
+        {
+            ohead=head;
+            otail=head; 
+        }
+        else
+        {
+            otail->next=head;
+            otail=otail->next;
+        }
+        
+    }
+    
+    head=head->next;
+}
+    
+
+    //IF there is no odd
+    if(ohead==NULL)
+    {   etail=NULL;
+        return ehead;
+    }
+    //IF THERE IS NO EVEN 
+    
+    if(ehead==NULL)
+    {
+        otail==NULL;
+        return ohead;
+    }
+    
+    //FINAL 
+    otail->next=ehead;
+    etail->next=NULL;
+    return ohead;
+    
+    
+    
+    
+    
+}
