@@ -1,0 +1,35 @@
+
+Node *kReverse(Node *head, int k)
+{
+     Node*current=head;
+    Node*prev=NULL;
+    Node*fwd=NULL;
+   int count=0;
+    
+    
+	//BASE CASE
+    
+    if(head==NULL||k==0||k==1)
+        return  head;
+    
+    //SMALL CALCULATION PART
+    while(count<k&&current!=NULL)
+    {
+        //saving
+        fwd=current->next;
+        current->next=prev;
+        
+        // updating
+        prev=current;
+        current=fwd;
+        
+        count++;
+    }
+    
+  if(fwd!=NULL)
+       head->next=kReverse(fwd,k);
+    
+    
+return prev;
+    
+}
