@@ -31,3 +31,26 @@ TreeNode<int>* max=root;   // it will store the maximum value of node of the tre
     
      
 }
+
+
+//RECURSION
+
+TreeNode<int>* maxDataNode(TreeNode<int>* root) {
+     
+   if(root==NULL)
+       return root;
+    
+    TreeNode<int>*max=root;
+    
+    for(int i=0;i<root->children.size();i++)
+    {
+        TreeNode<int>*ans=maxDataNode(root->children.at(i));
+        if(ans->data>max->data)
+            max=ans;
+        
+    }
+    return max;
+    
+    
+    
+}
