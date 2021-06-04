@@ -1,0 +1,33 @@
+
+int helper(int input[],int n,int output[][20],int startingIndex)
+{
+    if(startingIndex==n)
+    { output[0][0]=0;
+       return 1;
+    }
+    
+    int smallArr=helper(input,n,output,startingIndex+1);
+    
+    for(int i=0;i<smallArr;i++)
+    {
+        output[i+smallArr][0]=output[i][0]+1;                        //first coli=umn m size daalre h
+        output[i+smallArr][1]=input[startingIndex];                 //second column m first input
+        
+        for(int j=1;j<=output[i][0];j++)
+        {
+            output[i+smallArr][j+1]=output[i][j];                //bsskio ko copu=y kar re h
+            
+        }
+    }
+    return 2*smallArr;
+}
+
+
+int subset(int input[], int n, int output[][20]) {
+    // Write your code here
+    
+    return helper(input,n,output,0);
+  
+    
+
+}
