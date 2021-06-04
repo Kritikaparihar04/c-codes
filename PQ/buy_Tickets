@@ -32,6 +32,7 @@ int buyTicket(int *arr, int n, int k) {
             {
                  q.push(q.front());
                     q.pop();
+                    
                 if(k==0)
                 {
                     k=q.size()-1;
