@@ -1,100 +1,69 @@
-
-
-#include<queue>
 #include<bits/stdc++.h>
 
-
-void printRunningMedian(int *arr, int n) {
+void findMedian(int *arr, int n) 
     
-    priority_queue<int>pq;   //max heap
+{
     
-    priority_queue<int,vector<int>,greater<int>>min_pq;  //min heap
+priority_queue<int>maxHeap;
+priority_queue<int,vector<int>,greater<int>> minHeap;
     
- 
-    for(int i=0;i<n;i++)
-    {   if(pq.size()==0)  //for the first element
+for(int i=0;i<n;i++)
+{
+    //we have to insert in the queue
+    if(maxHeap.size()&&arr[i]>maxHeap.top())
+    {
+        minHeap.push(arr[i]);
+    }
+    else
+    {
+        maxHeap.push(arr[i]);
+    }
+    
+    
+    
+    //CHECK BALANCING
+    
+    if(maxHeap.size()-minHeap.size()>1)//IT MEANS THE HEAPS ARE NOT BALANCE
+    {
+       if(maxHeap.size()>minHeap.size())
+       {
+           int temp=maxHeap.top();
+           maxHeap.pop();
+           minHeap.push(temp);
+       }
+       else
+       {
+            int temp=minHeap.top();
+            minHeap.pop();
+            maxHeap.push(temp);
+       }
+    }
+    
+    //CALCULATE MEDIAN
+    
+    int median=0;
+    int totalSize=minHeap.size()+maxHeap.size();
+    
+    if(totalSize%2==0)
+    {
+        median=(minHeap.top()+maxHeap.top())/2;
+    }
+    else
+    {
+        if(minHeap.size()>maxHeap.size())
         {
-         pq.push(arr[i]);
-       //  cout<<pq.top()<<" ";
-        }
-       else if(arr[i]<pq.top())
-        {
-            pq.push(arr[i]);
+            median=minHeap.top();
         }
         else
         {
-            min_pq.push(arr[i]);
+            median=maxHeap.top();
         }
-        
-        
-        if(pq.size()>min_pq.size()&&(i+1)%2==0)
-        {
-            int front=pq.top();
-            pq.pop();
-            min_pq.push(front);
-            
-            int m=(min_pq.top()+pq.top())/2;
-            cout<<m<<" ";
-        }
-        else if(pq.size()<min_pq.size()&&(i+1)%2==0)      //we are checking the balancing
-        {
-            int front=min_pq.top();
-            min_pq.pop();
-            pq.push(front);
-            
-            int m=(pq.top()+min_pq.top())/2;
-            cout<<m<<" ";
-        }
-        else if(pq.size()==min_pq.size())
-        {
-            int m=(pq.top()+min_pq.top())/2;
-             cout<<m<<" ";
-        
-        }
-        
-        if(pq.size()>min_pq.size()&&(i+1)%2!=0)
-        {
-            cout<<pq.top()<<" ";
-        }
-        else if(pq.size()<min_pq.size()&&(i+1)%2!=0)
-        {
-            cout<<min_pq.top()<<" ";
-        }
-            
-        
-        
     }
     
     
-    
+    cout<<median<<" ";
     
     
     
 }
-
-
-
-
-
-
-
-
-#include <iostream>
-using namespace std;
- 
-
-int main() {
-    int n;
-    cin >> n;
-
-    int* arr = new int[n];
-
-    for (int i = 0; i < n; ++i) {
-        cin >> arr[i];
-    }
-
-    printRunningMedian(arr, n);
-
-    delete[] arr;
-}
-
+    
