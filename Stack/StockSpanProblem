@@ -1,1 +1,31 @@
+#include<stack>
 
+int* stockSpan(int *price, int size)  {
+	// Write your code here
+    stack<int>stk;
+    int *output=new int[size];
+    stk.push(0);      //we are pushing index
+  output[0]=1;
+    for(int i=1;i<size;i++)
+    {
+        while(!stk.empty()&&price[stk.top()]<price[i])
+        {
+            stk.pop();
+        }
+        
+        if(stk.empty()) // MEANS IT IS THE HIGHEST ELEMENT
+        {
+            output[i]=i+1;
+        }
+        else
+        {
+            //means there are some elements present which are smaller than that
+            output[i]=i-stk.top();
+        }
+        
+        stk.push(i);
+        
+    }
+    return output;
+    
+}
