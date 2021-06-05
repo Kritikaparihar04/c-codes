@@ -2,36 +2,35 @@
  using namespace std;
  #include<string>
  #include<stack>   //inbuilt stack
- bool isBalance(string exp)
- {
-     stack<char> s;   
-     int l=exp.length();
- int i=0;
- while( i<l)
- {
-     if(exp[i]=='(')
-        {
-            s.push('(');
-            i++;
-        }
-      else if(exp[i]==')')
-      {
-          if(s.size()!=0)
-          {
-              s.pop();
-          }
-          i++;
-      }
-    else
-    i++;
-
-
- }
-if(s.size()!=0)
-return false;
-else
- return true; 
- }
+ 
+bool isBalanced(string expression) 
+{
+   
+    stack<char> stk;
+    for(int i=0;i<expression.length();i++)
+    {
+        if(expression[i]=='(')
+            stk.push(expression[i]);
+        else if(expression[i]==')')
+            { 
+                   if(stk.empty())
+                       return false;
+                
+            
+                char topOfStack=stk.top();
+            stk.pop();
+                if(expression[i]==')'&&topOfStack=='(')
+                {
+                    continue;
+                }
+                else
+                    return false;
+            }
+    }
+     return stk.empty();
+    
+    
+}
 
  int main()
  {
