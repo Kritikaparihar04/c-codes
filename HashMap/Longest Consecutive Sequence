@@ -1,76 +1,48 @@
-#include <vector>
-using namespace std;
-#include<unordered_map>
+ 
 
 vector<int> longestConsecutiveIncreasingSequence(int *arr, int n){
 	//Your Code goes here
-    unordered_map<int,bool> map;
-    int global_len = 0;
-    int global_start;
     
-    for(int i=0; i<n; i++)
-        map[arr[i]] = true;
     
-    unordered_map<int,bool>::iterator it = map.begin();
+    unordered_map<int,bool> hash;
     
-    while(it!=map.end()){
-        
-        if(it->second==true){
-            int n = it->first;
-            int len   = 1;
-            int start = n;
-            while(1){
-                if(map.count(++n)){
-                    len++;
-                    map[n] = false;
-                }
-                else break;
-            }
-            n = it->first;
-            while(1){
-                if(map.count(--n)){
-                    len++;
-                    map[n] = false;
-                    start = n;
-                }
-                else break;
-            }
+    for(int i=0;i<n;i++){
+        hash[arr[i]]=true;
+    }
+    
+    
+    int start=arr[0];
+    int max_len=1;
+    
+    int j;
+    int count;
+    for(int i=0;i<n;i++){
+    	 count=1;
+        j=1;
+        if(hash[arr[i]-1]!=true){
             
-            if(len>global_len){
-                global_len   = len;
-                global_start = start;
+            while(hash[arr[i]+j]!=false){
+                count++;
+                j++;
             }
-            
-            if(len==global_len&&len!=1){
-                int i=0;
-                while(1){
-                    if(arr[i]==start){
-                        global_len   = len;
-                		global_start = start;
-                        break;
-                    }
-                    else if(arr[i]==global_start)
-                        break;
-                    i++;
-                }
+            if(max_len < count){
+                max_len=count;
+                start=arr[i];
             }
-            
-            
         }
-        it++;
+    }
+    vector<int> v;
+    
+    for(int i=0;i<max_len;i++){
+        v.push_back(start+i);
     }
     
-    vector<int> vec;
+    return v;
     
-    if(global_len == 1){
-        vec.push_back(arr[0]);
-        return vec;
-    }
     
-    for(int i=global_start; i<global_start+global_len; i++){
-        vec.push_back(i);
-    }
     
-    return vec;
+    
+    
+    
     
 }
