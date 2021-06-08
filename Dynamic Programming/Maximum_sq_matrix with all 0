@@ -1,0 +1,49 @@
+int findMaxSquareWithAllZeros(int **arr, int n, int m)
+{
+	//Write your code here
+    int** output = new int*[n];
+    for(int i=0;i<n;i++){
+        output[i] = new int[m];
+    }
+    int count=0;
+    for(int i=0;i<m;i++){
+        if(arr[0][i]==0){
+            output[0][i] = 1;
+            count=1;
+        }else{
+        	output[0][i] = 0;
+            }
+    }
+    for(int i=1;i<n;i++){
+        if(arr[i][0]==0){
+            output[i][0] = 1;
+            count=1;
+        }else{
+        	output[i][0] = 0;
+            }
+    }
+    
+    for(int i=1;i<n;i++){
+        for(int j=1;j<m;j++){
+            if(arr[i][j]!=0){
+                output[i][j]=0;
+                continue;
+            }
+            int a = output[i-1][j-1];
+            int b = output[i][j-1];
+            int c = output[i-1][j];
+            
+            output[i][j]=min(a,min(b,c))+1;
+        }
+    }
+    
+    for(int i=1;i<n;i++){
+        for(int j=1;j<m;j++){
+            if(count < output[i][j]){
+                count = output[i][j];
+            }
+        }
+    }
+    return count;
+    
+}
