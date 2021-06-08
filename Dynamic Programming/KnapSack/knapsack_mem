@@ -1,0 +1,46 @@
+#include<bits/stdc++.h>
+
+
+int helper(int *weight, int *value, int n,int maxWeight,int **dp)
+{
+
+    //Base case
+    if(n <0)
+        return 0;
+    
+    //Check for existence
+    if(dp[n][maxWeight]!=-1)
+        return dp[n][maxWeight];
+    
+    //Recursive call
+    if(weight[n]>maxWeight)
+    {dp[n][maxWeight]=helper(weight,value,n-1,maxWeight,dp);
+         return dp[n][maxWeight];
+    }else
+    {
+     dp[n][maxWeight]=max(helper(weight,value,n-1,maxWeight-weight[n],dp)+value[n],helper(weight,value,n-1,maxWeight,dp));
+        return dp[n][maxWeight];
+    }
+        
+    
+}
+
+
+ 
+int knapsack(int* weight, int* value, int n, int maxWeight) {
+	// Write your code here
+     int **dp=new int *[n+1];
+    for(int i=0;i<n+1;i++)
+    {
+         dp[i]=new int[maxWeight+1];
+    }
+    for(int i=0;i<n+1;i++)
+    {
+        for(int j=0;j<=maxWeight;j++)
+        {
+            dp[i][j]=-1;
+        }
+    }
+    
+    return helper(weight,value,n,maxWeight,dp);
+}
