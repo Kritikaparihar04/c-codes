@@ -1,0 +1,51 @@
+
+
+
+#include<climits>
+#include<climits>
+
+int helper(int *p,int s,int n,int **output){
+    if(s==n ||n-s==1)
+        return 0;
+    
+    int k; 
+    int ans = INT_MAX; 
+    int count; 
+    
+    if(output[s][n] != -1)
+        return output[s][n];
+    
+    for (k = s+1; k < n; k++) 
+    { 
+        count = helper(p, s, k,output) + 
+                helper(p, k, n,output) + 
+                p[s] * p[k] * p[n]; 
+  
+        ans = min(ans,count);
+    } 
+    output[s][n] = ans;//stroing ans for future use
+  
+    // Return minimum count 
+    return ans; 
+    
+}
+
+int matrixChainMultiplication(int* p, int n){
+    
+  /* Don't write main().
+   *  Don't read input, it is passed as function argument.
+   *  Return output and don't print it.
+   *  Taking input and printing output is handled automatically.
+  */
+    int **output;
+    output = new int*[n+1];
+    for(int i=0;i<=n;i++){
+        output[i] = new int[n+1];
+    }
+    for(int i=0;i<=n;i++){
+        for(int j =0;j<=n;j++)
+        output[i][j] = -1;
+    }
+helper(p,0,n,output);
+
+}
