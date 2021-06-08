@@ -1,0 +1,37 @@
+pair<Node<int>*, Node<int>*> constructLinkedListHelper(BinaryTreeNode<int>* root){
+    
+    if(root == NULL){
+        pair<Node<int>*, Node<int>*> p;
+        p.first = NULL;
+        p.second = NULL;
+        return p;
+    }
+    pair<Node<int>*, Node<int>*> leftLL = constructLinkedListHelper(root -> left);
+    pair<Node<int>*, Node<int>*> rightLL = constructLinkedListHelper(root -> right);
+    Node<int>* newNode = new Node<int>(root -> data);
+    if(leftLL.second != NULL){
+        leftLL.second -> next = newNode;
+    }
+    else{
+        leftLL.second = newNode;
+        leftLL.first = newNode;
+    }
+    if(rightLL.second != NULL){
+        newNode -> next = rightLL.first;
+    }
+    else{
+        rightLL.first = newNode;
+        rightLL.second = newNode;
+    }
+    
+    pair<Node<int>*, Node<int>*> p1;
+    p1.first = leftLL.first;
+    p1.second = rightLL.second;
+    return p1;
+}
+
+
+Node<int>* constructLinkedList(BinaryTreeNode<int>* root) {
+    return constructLinkedListHelper(root).first;
+    
+}
