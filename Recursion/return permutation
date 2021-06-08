@@ -1,0 +1,61 @@
+#include <string>
+using namespace std;
+
+int returnans(string input,int len,string output[]){
+    int k=0;
+    if(len==1){
+        
+        output[0]=input[0];
+        return 1;
+        
+        
+    }
+    if(len>1){
+    int ans=returnans(input.substr(1),len-1,output);
+    /*cout<<input.substr(0,1)<<endl;*/
+    int len1=output[0].size();
+    string p[ans];
+    for(int j=0;j<ans;j++){
+         p[j]=output[j];
+    }
+        for(int j=0;j<ans;j++){
+        
+    for(int i=0;i<=len1;i++){
+               if(i==0){
+                   output[k]=input[0]+p[j];
+               }
+          else{
+                output[k]= p[j].substr(0,i)+input[0]+p[j].substr(i,len);       
+          } 
+              k=k+1; 
+     
+        
+    }
+        }
+    }
+    
+    return k;
+    
+    
+    
+    
+}
+int returnPermutations(string input, string output[]){
+   	/* Don't write main() function.
+	 * Don't read input, it is passed as function argument.
+	 * Print output as specified in the question
+	*/
+    
+    
+    
+    
+    int len=input.length();
+    int outlen=0;
+    int ans=returnans(input,len,output);
+    
+    
+    
+    
+    return ans;
+    
+}
