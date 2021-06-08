@@ -1,0 +1,74 @@
+
+#include<cstring>
+#include<climits>
+#define MAX 1005
+
+
+int solve(string a, string b, int SiA,int SiB, int **dp)
+{
+    //BASE CASE
+    if(SiB==b.length())
+        return 1;    
+    
+    if(SiA==a.length())
+        return 1001;
+    
+    //check for the existence
+    if(dp[SiA][SiB]!=-1)
+        return dp[SiA][SiB];
+    
+    //when a is not present 
+    int option1=solve(a,b,SiA+1, SiB, dp);
+    
+    int indexB=-1;
+    
+    for(int i =SiB;i<b.length();i++)       //if present in b hum us index k aage se kaam shuru krege
+    {
+        if(b[i]==a[SiA])
+        {
+            indexB=i;
+            break;
+        }
+    }
+    
+    if(indexB==-1)           //means not present in b
+        return 1;    
+                                      //if vo element b m present hogaa tabhi hum next option m check krege nah
+    int option2=1+solve(a,b,SiA+1, indexB+1,dp);   //+1 because one charracter phle he aa chuka hai
+    
+    int ans=0;
+    
+    if(option1<option2)
+        ans=option1;
+    else
+        ans=option2;
+    
+    //Save for the future use
+    dp[SiA][SiB]=ans;
+    return ans;
+    
+    
+    
+}
+
+int solve(string S, string T)
+{
+    int **dp=new int *[S.length()];
+    for(int i=0;i<S.length();i++)
+    {
+        dp[i]=new int [T.length()];
+        for(int j=0;j<T.length();j++)
+            dp[i][j]=-1;
+    }
+    
+    
+    int ans=solve(S,T,0,0,dp);
+    
+    for(int i=0;i<S.length();i++)
+    {
+        delete[]dp[i];
+    }
+    delete[]dp;
+    
+    return ans;
+}
