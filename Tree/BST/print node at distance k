@@ -1,0 +1,45 @@
+
+void print(BinaryTreeNode<int> *root, int k)
+{
+    if(root==NULL||k<0)
+        return;
+    if(k==0)
+    { cout<<root->data<<endl;return;}
+    print(root->left,k-1);
+    print(root->right,k-1);
+}
+int Arigato(BinaryTreeNode<int> *root, int node, int k)
+{
+     if(root==NULL)
+         return -1;
+    if(root->data==node)
+    {
+        print(root,k);
+            return 0;
+    }
+    int l=Arigato(root->left,node,k);
+    if(l!=-1)
+    {
+        if(l+1==k)
+    cout<<root->data<<endl;
+     else
+         print(root->right,k-l-2);
+    return l+1;
+    }
+
+       int r=Arigato(root->right,node,k);
+    if(r!=-1) {
+        if(r+1==k)
+            cout<<root->data<<endl;
+        else
+        print(root->left,k-r-2);
+        return r+1;
+                }
+        return -1;
+}
+void nodesAtDistanceK(BinaryTreeNode<int> *root, int node, int k) {
+ if(root==NULL)
+     return;
+    Arigato(root,node, k);
+
+}
