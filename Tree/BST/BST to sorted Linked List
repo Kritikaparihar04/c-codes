@@ -1,37 +1,72 @@
-pair<Node<int>*, Node<int>*> constructLinkedListHelper(BinaryTreeNode<int>* root){
+
+class base{
+  public:
+    Node<int>*head;
+    Node<int>*tail;
     
-    if(root == NULL){
-        pair<Node<int>*, Node<int>*> p;
-        p.first = NULL;
-        p.second = NULL;
-        return p;
+    base()
+    {
+        head=NULL;
+        tail=NULL;
     }
-    pair<Node<int>*, Node<int>*> leftLL = constructLinkedListHelper(root -> left);
-    pair<Node<int>*, Node<int>*> rightLL = constructLinkedListHelper(root -> right);
-    Node<int>* newNode = new Node<int>(root -> data);
-    if(leftLL.second != NULL){
-        leftLL.second -> next = newNode;
+         
+    
+};
+
+
+base helper(BinaryTreeNode<int>*root)
+{
+    //OBJECT CREATED
+    base combinedList;
+    
+    //BASE CASE
+    if(root==NULL)
+        return combinedList;
+    
+    base LeftLL=helper(root->left);
+    base RightLL=helper(root->right);
+    
+    //create a node
+ Node<int>*newNode=new Node<int> (root->data);
+    
+    //CONNECTION
+    
+    if(LeftLL.tail!=NULL)
+    {
+    
+     LeftLL.tail->next=newNode;
     }
-    else{
-        leftLL.second = newNode;
-        leftLL.first = newNode;
+     
+    newNode->next=RightLL.head;
+    
+    
+    //CONDITIONS CHECK
+    
+    
+    if(LeftLL.head!=NULL)
+    {
+        combinedList.head=LeftLL.head;
     }
-    if(rightLL.second != NULL){
-        newNode -> next = rightLL.first;
-    }
-    else{
-        rightLL.first = newNode;
-        rightLL.second = newNode;
+    else
+    {
+        combinedList.head=newNode;
     }
     
-    pair<Node<int>*, Node<int>*> p1;
-    p1.first = leftLL.first;
-    p1.second = rightLL.second;
-    return p1;
+    if(RightLL.tail==NULL)
+    {
+        combinedList.tail=newNode;
+    }
+    else
+    {
+        combinedList.tail=RightLL.tail;
+    }        
+    
+    return combinedList;
 }
 
 
 Node<int>* constructLinkedList(BinaryTreeNode<int>* root) {
-    return constructLinkedListHelper(root).first;
-    
+	// Write your code here
+    base ans=helper(root);     //we are accepting the object in type of base class
+    return ans.head;
 }
