@@ -1,0 +1,24 @@
+int helper(struct Node*root, int *height)
+{
+    int lh=0,rh=0;
+    
+    int ld=0,rd=0;
+    
+    if(root==NULL)
+    {
+        *height=0;
+        return 0;  //diameter will also becomes 0
+        
+    }
+    
+    ld=helper(root->left,&lh);
+    rd=helper(root->right,&rh);
+    
+    *height=max(lh,rh)+1;
+    return max(lh+rh+1,max(ld,rd));
+}
+int diameter(struct Node* root) {
+    // code here
+    int h=0;
+    int ans= helper(root,&h);
+}
