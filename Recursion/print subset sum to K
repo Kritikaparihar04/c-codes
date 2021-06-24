@@ -1,0 +1,50 @@
+void helper(int input[],int size, int startingIndex,int output[],int osize,int k)
+{
+    //if bilkull sahii aaa gya  
+    if(startingIndex==size)
+    {
+        //output likhio
+        if(k==0)
+        {
+        for(int i=0;i<osize;i++)
+        {
+            cout<<output[i]<<" ";
+        }
+        
+        cout<<endl;
+        }
+        return;
+    }
+    
+    
+    helper(input,size,startingIndex+1,output,osize,k);
+    
+    int smalloutput1[1000],smalloutput2[1000];
+    
+    int output1Size=0, output2Size=0;
+    
+    if(k>0) //means we havent come to the correct sum
+    {
+        //copy the elements
+        int i;
+        for(i=0;i<osize;i++)
+        {
+            smalloutput2[i]=output[i];
+        }
+        
+        smalloutput2[i]=input[startingIndex];
+        
+        helper(input,size,startingIndex+1,smalloutput2,osize+1,k-input[startingIndex]);
+        
+        
+    }
+    
+    
+    
+}
+
+void printSubsetSumToK(int input[], int size, int k) {
+    // Write your code here
+     int output[10000];
+    helper(input,size,0,output,0,k);
+}
