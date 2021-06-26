@@ -1,0 +1,47 @@
+void spiralPrint(int **input, int nRows, int nCols)
+{
+    
+    
+    if(nRows==0||nCols==0)
+        return;
+    
+    //Write your code here
+    int rs=0,cs=0,count=0;
+    int re=nRows, ce=nCols;
+     
+    int numElements=nRows*nCols;
+    while(count<numElements)
+    {
+        for(int j=cs ;j<ce &&  count<numElements ;j++)
+        {
+            cout<<input[rs][j]<<" ";
+            count++;
+        }
+        
+        rs++;
+        
+        for(int i=rs;i<re &&  count<numElements;i++)
+        {
+            cout<<input[i][ce-1]<<" ";
+             count++;
+        }
+         ce--;
+        
+        for(int i=ce-1;i>=cs&& count<numElements;i--)
+        {
+            cout<<input[re-1][i]<<" ";
+          count++;
+        }
+        
+        re--;
+        for(int i=re-1;i>=rs && count<numElements;i--)
+        {
+            cout<<input[i][cs]<<" ";
+             count++;
+        }
+        
+        cs++;
+            
+    
+}
+}
