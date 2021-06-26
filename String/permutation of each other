@@ -1,0 +1,37 @@
+bool isPermutation(char input1[], char input2[]) {
+    
+    int input[256];        //because the englisjj alphabets ASCII value ranges upto 256
+    
+    if(strlen(input1)!=strlen(input2))
+      return false;
+    
+    for(int i=0;i<256;i++)
+    {
+        input[i]=0;
+    }
+    
+    //update the array for the first string 
+    
+    for(int i=0;input1[i]!='\0';i++)
+    {
+      ++input[input1[i]];
+    }
+    
+    
+    for(int i=0;input2[i]!='\0';i++)
+    {
+        --input[input2[i]];
+    }
+    
+    
+    //we will check the frequency
+    
+    for(int i=0;i<256;i++)
+    {
+        if(input[i]!=0)             //means there exists some extra character
+            return false;           
+    }
+    
+    
+    return true;
+    }
