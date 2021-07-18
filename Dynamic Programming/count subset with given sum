@@ -1,0 +1,71 @@
+#include<iostream>
+using namespace std;
+#include<bits/stdc++.h>
+
+
+int sub(int arr[],int sum)
+{
+
+      //create a dp array
+      int dp[5][sum+1];
+      //initialise the row and column
+
+    for(int i=1;i<5;i++)
+    {
+        dp[i][0]=1;
+    
+    }
+dp[0][0]=1;
+    for(int i=1;i<=sum;i++)
+    {
+        dp[0][i]=0;
+    
+    }
+
+   //now fill the other cells
+
+   for(int i=1;i<5;i++)
+ {
+     for(int j=1;j<=sum;j++)  //j mei sum padaa huaaa h
+     {
+             if(arr[i-1]<=j)
+             {
+                 dp[i][j]=dp[i-1][j]+dp[i-1][j-arr[i-1]];
+
+             }
+            else
+             {
+                 dp[i][j]=dp[i-1][j];
+             }
+
+
+    }
+ }
+   //return the result
+
+   return dp[4][sum];
+
+}
+
+
+
+
+int main()
+{
+    int arr[4]={1,1,4,3};
+
+  int sum=0;0
+  for(int i=0;i<4;i++)
+  {
+      sum+=arr[i];
+  }   
+
+   //count for those elements in which subset sum will have some common difference
+
+int diff=8;
+
+ int ans=(diff+sum)/2;
+ cout<< sub(arr,ans);
+
+
+}
