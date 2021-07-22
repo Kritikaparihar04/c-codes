@@ -1,0 +1,48 @@
+void findPreSuc(Node* root, Node*& pre, Node*& suc, int key)
+{
+    if(root==NULL)
+    return ;
+    
+                              //WHEN I GOT THE KEY
+    if(root->key==key)
+    {
+        //predecessor will be present in the right most position of the left subtree
+       
+       if(root->left!=NULL)
+       {Node*temp=root->left;
+        
+        while(temp->right)
+        {
+            temp=temp->right;
+        }
+        
+        pre=temp;
+       }
+       
+       if(root->right!=NULL)
+       {
+        Node *temp=root->right;
+        
+        while(temp->left)
+        {
+            temp=temp->left;
+        }
+        
+        suc=temp;
+       }
+       
+       return ;
+    }
+    
+    
+    if(key<root->key)
+    {
+        suc=root;
+        findPreSuc(root->left,pre,suc,key);
+    }
+     else
+    {
+        pre=root;
+        findPreSuc(root->right,pre,suc,key);
+     }
+}
