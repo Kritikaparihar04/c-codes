@@ -1,0 +1,25 @@
+string larrysArray(vector<int> A) {
+
+
+    // Complete the larrysArray function below.
+     
+int n=A.size();int k=1;
+for(int i=0;i<n;i++)
+{
+    for(int j=i+1;j<n;j++)
+    {   
+        if(A[i]>A[j])
+        k^=1;
+        else
+        k^=0;
+    }
+}
+if(k==1)
+return "YES";
+else
+return "NO";
+
+}
+
+
+//WE CAN ALSO USE AN INVERSION APPROACH, SUM EVEN THEN YES ELSE NO, THIS KIND OF THING
