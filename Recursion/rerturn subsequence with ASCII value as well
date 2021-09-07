@@ -1,0 +1,34 @@
+#include<iostream>
+using namespace std;
+#include<bits/stdc++.h>
+vector<string>v;
+void solve(string s,string output){
+   
+   if(s.length()==0)
+        {
+           v.push_back(output);
+           return ;
+        }
+
+        char ch=s[0];
+         int code=ch;
+        string ros=s.substr(1);
+
+        solve(ros,output);
+        solve(ros,output+ch);
+  solve(ros,output+to_string(code));
+   
+
+}
+
+int main()
+{   string output="";
+   string s="Kritika";
+   solve(s,output);
+
+   for(int i=0;i<v.size();i++)
+   {
+      cout<<v[i]<<endl;
+      
+   }
+}
